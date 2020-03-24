@@ -1,0 +1,24 @@
+body {
+  background-color: #150940;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+}
+
+.lyrics {
+  color: #F29849;
+  font-size: 30px;
+}
+.chords {
+  position: absolute;
+  font-size: 20px;
+  color: #F2E74B;
+}
+.chordsLine {
+  padding-bottom: 15px;
+}
+
+.header {
+  font-size: 22px;
+  color: white;
+}
