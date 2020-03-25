@@ -39,7 +39,6 @@ export const renderSong = (song = '') => {
   return song
     .split(/\n/g)
     .map((line, index) => {
-      console.log("###", index, line);
       if (index === 0 ) return renderHeader(line);
       return line === '' ? renderEmptyLine() : renderLine(line, index)
       }

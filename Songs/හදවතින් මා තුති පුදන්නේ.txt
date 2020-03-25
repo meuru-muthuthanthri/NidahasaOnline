@@ -1,11 +1,4 @@
-import asd from './Songs/test'
-
-export const read = () => {
-  // var vs = require('./Songs/Andura Madin.txt');
-
-  console.log("##############", JSON.stringify(asd));
-
-  return `හදවතින් මා තුති පුදන්නේ - Am - 4/4
+හදවතින් මා තුති පුදන්නේ - Am - 4/4
 
 හදව[Am]තින් මා තුති පු[G]දන්නේ ජේසු[F]ගේ [G]ආදරේ නි[Am]සා//
 යළි ය[Am]ළිත් මා පණ ල[Dm]බන්නේ ජේසු[G]ගේ ශ්‍රී [F]නාමයේ
@@ -19,5 +12,4 @@ export const read = () => {
 වේ ප්‍රශංසා
 
 ජේසු මාගේ සුවයයි //
-ජේසු ජීවමාන වේ`;
-};
+ජේසු ජීවමාන වේ
