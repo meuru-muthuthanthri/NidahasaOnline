@@ -1,7 +1,7 @@
 body {
   background-color: #150940;
   color: white;
-  padding: 40px;
+  /*padding: 40px;*/
   font-family: Arial;
 }
 
@@ -21,4 +21,13 @@ body {
 .header {
   font-size: 22px;
   color: white;
+}
+
+.songSection {
+  margin: 0 30px;
+}
+
+.songPageHeader {
+  background-color: #61dafb;
+  height: 100px;
 }

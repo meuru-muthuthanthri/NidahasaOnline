@@ -4,7 +4,7 @@ import { read } from '../repository/SongReader';
 const song = read();
 // const song = ' [A] මට [F]දරන්න බෑ[Am][F] ජේසුනී ඔබෙ[Gm] ආදරේ';
 
-class ChordPage extends React.Component {
+class SongPage extends React.Component {
   componentDidMount() {
     getTags(song).forEach(val => {
       const chordElement = document.getElementById(`ch_${val}`);
@@ -17,10 +17,13 @@ class ChordPage extends React.Component {
   render() {
     return (
       <div>
+        <div className="songPageHeader">Hello</div>
+        <div className="songSection">
         {renderSong(song)}
+        </div>
       </div>
     );
   }
 }
 
-export { ChordPage };
+export { SongPage };
