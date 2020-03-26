@@ -1,9 +1,10 @@
-const reducer =  (state = 0, action) => {
+const initialState = {
+  showChords: true
+};
+const reducer =  (state = initialState, action) => {
   switch (action.type) {
-    case "INCREMENT":
-      return state + 1;
-    case "DECREMENT":
-      return state - 1;
+    case 'SHOW_CHORD_TOGGLED':
+      return { showChords: !state.showChords};
     default:
       return state;
   }

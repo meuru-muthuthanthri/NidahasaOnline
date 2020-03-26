@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
+import { Actions } from '../Actions';
 import View from './View';
 
 const mapStateToProps = state => {
-  console.log("@@@", state);
   return {
-    count: 0
+    showChords: state.songPage.showChords
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    handleIncrementClick: () => dispatch({ type: 'INCREMENT' }),
-    handleDecrementClick: () => dispatch({type: 'DECREMENT'})
+    onShowChordToggle: () => dispatch(Actions.songPage.onShowChordToggle()),
   }
 };
 

@@ -16,11 +16,15 @@ export default class View extends React.Component {
   }
 
   render() {
-    // const { count } = this.props;
+    const { showChords, onShowChordToggle } = this.props;
     return (
       <div>
         <h1>{'count'}</h1>
-        <div className="songPageHeader"><Switch /></div>
+        <div className="songPageHeader">
+          <FormControlLabel
+          control={<Switch checked={showChords} onChange={onShowChordToggle}/>}
+          label="Show Chords" />
+        </div>
         <div className="songSection">
         {renderSong(song)}
         </div>
