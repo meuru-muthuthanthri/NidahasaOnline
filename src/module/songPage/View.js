@@ -1,10 +1,11 @@
 import React from 'react';
-import { renderSong, getTags } from '../Logic/ChordsManager';
-import { read } from '../repository/SongReader';
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import { renderSong, getTags } from '../../Logic/ChordsManager';
+import { read } from '../../repository/SongReader';
 const song = read();
-// const song = ' [A] මට [F]දරන්න බෑ[Am][F] ජේසුනී ඔබෙ[Gm] ආදරේ';
 
-class SongPage extends React.Component {
+export default class View extends React.Component {
   componentDidMount() {
     getTags(song).forEach(val => {
       const chordElement = document.getElementById(`ch_${val}`);
@@ -15,9 +16,11 @@ class SongPage extends React.Component {
   }
 
   render() {
+    // const { count } = this.props;
     return (
       <div>
-        <div className="songPageHeader">Hello</div>
+        <h1>{'count'}</h1>
+        <div className="songPageHeader"><Switch /></div>
         <div className="songSection">
         {renderSong(song)}
         </div>
@@ -25,5 +28,3 @@ class SongPage extends React.Component {
     );
   }
 }
-
-export { SongPage };

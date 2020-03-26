@@ -1,12 +1,19 @@
 import React from 'react';
 import './App.css';
-import { SongPage } from './Views/SongPage';
+import SongPage from './module/songPage';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './module/reducer';
+
+const store = createStore(reducer);
 
 function App() {
   return (
-    <div className="App">
-      <SongPage/>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <SongPage/>
+      </div>
+    </Provider>
   );
 }
 
