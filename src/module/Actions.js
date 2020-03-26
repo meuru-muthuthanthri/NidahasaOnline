@@ -1,9 +1,5 @@
 import songPage from './songPage/actions'
 
-const createAction = (type) => {
-  return (payload) => ({ type, payload})
-};
-
 const globalEvents = {
 };
 

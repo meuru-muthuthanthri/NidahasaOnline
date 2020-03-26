@@ -1,4 +1,4 @@
-const createAction = (type) => (payload) => ({ type, payload});
+import { createAction } from '../Utils';
 
 const Events = {
   'SHOW_CHORD_TOGGLED': 'SHOW_CHORD_TOGGLED'

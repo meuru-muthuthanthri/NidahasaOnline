@@ -5,28 +5,35 @@ import { renderSong, getTags } from '../../Logic/ChordsManager';
 import { read } from '../../repository/SongReader';
 const song = read();
 
+const postionChords = () => {
+  getTags(song).forEach(val => {
+    const chordElement = document.getElementById(`ch_${val}`);
+    if (chordElement) {
+      chordElement.style.left = `${document.getElementById(val).offsetLeft}px`;
+    }
+  });
+}
+
 export default class View extends React.Component {
   componentDidMount() {
-    getTags(song).forEach(val => {
-      const chordElement = document.getElementById(`ch_${val}`);
-      if (chordElement) {
-        chordElement.style.left = `${document.getElementById(val).offsetLeft}px`;
-      }
-    });
+    postionChords();
+  }
+
+  componentDidUpdate() {
+    postionChords();
   }
 
   render() {
     const { showChords, onShowChordToggle } = this.props;
     return (
       <div>
-        <h1>{'count'}</h1>
         <div className="songPageHeader">
           <FormControlLabel
           control={<Switch checked={showChords} onChange={onShowChordToggle}/>}
           label="Show Chords" />
         </div>
         <div className="songSection">
-        {renderSong(song)}
+        {renderSong(song, showChords)}
         </div>
       </div>
     );

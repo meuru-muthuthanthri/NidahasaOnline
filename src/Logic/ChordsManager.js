@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 const CHORD_REGEX = /\[([^\]]*)\]/g;
 
-export const renderLine = (line = '', id) => {
+export const renderLine = (line = '', id, withChords) => {
   const split = line.split(CHORD_REGEX);
   const wordList = split
     .filter((val, index) => index % 2 === 0)
@@ -19,14 +19,14 @@ export const renderLine = (line = '', id) => {
     [wordList.shift()],
   );
 
-  const chords = chordList.reduce(
+  const chords = withChords ? chordList.reduce(
     (newLine, chord, index) =>
       newLine.concat(<span className="chords" id={`ch_${id}${index}`}>{chord}</span>)
-    , []);
+    , []) : null;
 
   return (
     <div>
-      <div className="chordsLine">{chords}</div>
+      { !_.isEmpty(chords) ? <div className="chordsLine">{chords}</div> : null }
       <span className="lyrics">{modifiedLine}</span>
     </div>
   );
@@ -35,12 +35,12 @@ export const renderLine = (line = '', id) => {
 const renderEmptyLine = () => (<div className="emptyLine"><br /><br /></div>);
 const renderHeader = title => (<div className="header"><h1>{title}</h1></div>);
 
-export const renderSong = (song = '') => {
+export const renderSong = (song = '', withChords = true) => {
   return song
     .split(/\n/g)
     .map((line, index) => {
       if (index === 0 ) return renderHeader(line);
-      return line === '' ? renderEmptyLine() : renderLine(line, index)
+      return line === '' ? renderEmptyLine() : renderLine(line, index, withChords)
       }
     );
 };
