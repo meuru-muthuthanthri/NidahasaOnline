@@ -4,7 +4,8 @@ import View from './View';
 
 const mapStateToProps = state => {
   return {
-    showChords: state.songPage.get('showChords')
+    showChords: state.songPage.get('showChords'),
+    currentSong: state.songPage.get('song'),
   };
 };
 const mapDispatchToProps = dispatch => {

@@ -20,9 +20,10 @@ export const renderLine = (line = '', id, withChords) => {
   );
 
   const chords = withChords ? chordList.reduce(
-    (newLine, chord, index) =>
-      newLine.concat(<span className="chords" id={`ch_${id}${index}`}>{chord}</span>)
-    , []) : null;
+    (newLine, chord, index) => newLine
+      .concat(<span className="chords" id={`ch_${id}${index}`}>{chord}</span>),
+    [],
+  ) : null;
 
   return (
     <div>

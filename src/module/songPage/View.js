@@ -2,10 +2,8 @@ import React from 'react';
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import { renderSong, getTags } from '../../Logic/ChordsManager';
-import { read } from '../../repository/SongReader';
-const song = read();
 
-const postionChords = () => {
+const positionChords = (song) => {
   getTags(song).forEach(val => {
     const chordElement = document.getElementById(`ch_${val}`);
     if (chordElement) {
@@ -14,17 +12,20 @@ const postionChords = () => {
   });
 }
 
+
 export default class View extends React.Component {
   componentDidMount() {
-    postionChords();
+    const { currentSong } = this.props;
+    positionChords(currentSong);
   }
 
   componentDidUpdate() {
-    postionChords();
+    const { currentSong } = this.props;
+    positionChords(currentSong);
   }
 
   render() {
-    const { showChords, onShowChordToggle } = this.props;
+    const { showChords, currentSong, onShowChordToggle } = this.props;
     return (
       <div>
         <div className="songPageHeader">
@@ -33,7 +34,7 @@ export default class View extends React.Component {
           label="Show Chords" />
         </div>
         <div className="songSection">
-        {renderSong(song, showChords)}
+        {renderSong(currentSong, showChords)}
         </div>
       </div>
     );

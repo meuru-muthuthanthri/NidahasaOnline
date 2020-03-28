@@ -7,7 +7,6 @@ import { read } from '../../repository/SongReader';
 import _ from 'lodash';
 
 let songs = read();
-console.log(_.keys(songs));
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,12 +14,9 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
     flexGrow: 1,
   },
   gridList: {
-    width: 'inherit',
-    height: 'inherit',
   },
   button: {
     padding: '30px',
@@ -42,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function () {
+export default function ({ onClickSong }) {
   const classes = useStyles();
   return(
     <div className={classes.root}>
@@ -51,7 +47,8 @@ export default function () {
             <Button variant="contained" color="primary" classes={{
               root: classes.bRoot, // class name, e.g. `classes-nesting-root-x`
               label: classes.label, // class name, e.g. `classes-nesting-label-x`
-            }}>
+            }} onClick={() => onClickSong(songName)} key={songName}
+            >
               {`${index + 1}. ${songName}`}
             </Button>
         ))}
@@ -59,28 +56,3 @@ export default function () {
     </div>
   )
 }
-//
-// return (
-//   <div className={classes.root}>
-//     <GridList cellHeight={180} className={classes.gridList}>
-//       <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-//         <ListSubheader component="div">December</ListSubheader>
-//       </GridListTile>
-//       {tileData.map(tile => (
-//         <GridListTile key={tile.img}>
-//           <img src={tile.img} alt={tile.title} />
-//           <GridListTileBar
-//             title={tile.title}
-//             subtitle={<span>by: {tile.author}</span>}
-//             actionIcon={
-//               <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-//                 <InfoIcon />
-//               </IconButton>
-//             }
-//           />
-//         </GridListTile>
-//       ))}
-//     </GridList>
-//   </div>
-// );
-// }
