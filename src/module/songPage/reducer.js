@@ -3,9 +3,8 @@ import { Events } from '../Actions';
 
 const initialState = Map({
   showChords: true,
-  song: `අහස් කුසට වඩා G 4/4
-
-[G] අහස් කු[C]සට වඩා [D] පොළෝ තල[D]යට වඩා
+  title: '',
+  song: `[G] අහස් කු[C]සට වඩා [D] පොළෝ තල[D]යට වඩා
 ඔබේ ම[C]හිමට මුළු [D]ලොවටම වඩා උ[G]තුම්
 රජුන්ගෙ [Em]රජිඳුන් ඔබමයි මාගේ ස්වා[C]මී [Bm]
 [Am]විශ්වයේ මුළු පොළොවේ අග රජි[D]ඳුන්
@@ -22,12 +21,12 @@ const initialState = Map({
 `,
 });
 
-const reducer =  (state = initialState, { type, payload}) => {
+const reducer = (state = initialState, { type, payload}) => {
   switch (type) {
     case 'SHOW_CHORD_TOGGLED':
       return state.set('showChords', !state.get('showChords'));
     case Events.songList.NAVIGATED_TO_SONG:
-      return state.set('song', payload);
+      return state.set('song', payload.song).set('title', payload.title);
     default:
       return state;
   }

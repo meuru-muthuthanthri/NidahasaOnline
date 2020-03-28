@@ -34,16 +34,11 @@ export const renderLine = (line = '', id, withChords) => {
 };
 
 const renderEmptyLine = () => (<div className="emptyLine"><br /><br /></div>);
-const renderHeader = title => (<div className="header"><h1>{title}</h1></div>);
 
 export const renderSong = (song = '', withChords = true) => {
   return song
     .split(/\n/g)
-    .map((line, index) => {
-      if (index === 0 ) return renderHeader(line);
-      return line === '' ? renderEmptyLine() : renderLine(line, index, withChords)
-      }
-    );
+    .map((line, index) => (line === '' ? renderEmptyLine() : renderLine(line, index, withChords)));
 };
 
 export const getTags = (song = '') =>

@@ -1,15 +1,15 @@
 import songPage from './songPage/actions';
 import songList from './songList/actions';
-import history from '../services/history';
+import history from '../core/history';
 
 const globalEvents = {
 };
 
 const globalActions = {
-  navigateTo: (screen) => {
-    console.log("@@@@@@@@@", screen);
-    history.push('/page')
-  }
+  navigateTo: (page) => {
+    console.log('Navigating to ', page);
+    history.push(page);
+  },
 };
 
 export const Actions = {

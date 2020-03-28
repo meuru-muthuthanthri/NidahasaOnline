@@ -1,10 +1,10 @@
 const path = require('path');
 const fs = require('fs');
+const require1 = require('../src/Logic/SongProcessor');
 
-let SongsPath = '../Songs';
+
+const SongsPath = '../Songs';
 const directoryPath = path.join(__dirname, SongsPath);
-
-const output = {};
 
 function writeJson(content) {
   fs.writeFile('src/repository/Songs/Songs.json', JSON.stringify(content), function (err) {
@@ -13,20 +13,23 @@ function writeJson(content) {
   });
 }
 
-fs.readdir(directoryPath, function (err, files) {
+fs.readdir(directoryPath, (err, files) => {
   if (err) {
-    return console.log('Unable to scan directory: ' + err);
+    console.log(`Unable to scan directory: ${err}`);
+    return;
   }
-  files.forEach(function (fileName) {
-    if(fileName === 'README.md') {
+
+  const output = {};
+  files.forEach((fileName) => {
+    if (fileName === 'README.md') {
       return;
     }
-    var text = fs.readFileSync(`${directoryPath}/${fileName}`).toString('utf-8');
+    const text = fs.readFileSync(`${directoryPath}/${fileName}`).toString('utf-8');
     output[fileName.replace('.txt', '')] = text;
-    console.log("File read: ", fileName);
+    console.log('File getSongs: ', fileName);
   });
   // console.log("########", output);
-  writeJson(output)
+  writeJson(require1.process(output));
 });
 
 

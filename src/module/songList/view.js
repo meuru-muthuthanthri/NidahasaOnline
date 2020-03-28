@@ -2,11 +2,11 @@ import React from 'react';
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import Button from '@material-ui/core/Button';
-import { read } from '../../repository/SongReader';
+import { getSongs } from '../../repository/SongReader';
 
 import _ from 'lodash';
 
-let songs = read();
+let songs = getSongs();
 
 const useStyles = makeStyles(theme => ({
   root: {

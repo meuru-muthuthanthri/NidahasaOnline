@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './module/Reducers';
 import { Router } from 'react-router-dom';
-import history from './services/history';
+import reducer from './module/Reducers';
+import history from './core/history';
 import Routes from './core/routes';
 
 const store = createStore(reducer);

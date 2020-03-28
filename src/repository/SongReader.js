@@ -1,5 +1,5 @@
-import Songs from './Songs/Songs'
+import Songs from './Songs/Songs';
 
-export const read = () => {
+export const getSongs = () => {
   return Songs;
 };

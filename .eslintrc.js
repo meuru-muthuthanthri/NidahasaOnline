@@ -21,5 +21,8 @@ module.exports = {
     "rules": {
         'import/no-unresolved' : 'off',
         'react/jsx-filename-extension': 'off',
+        'arrow-parens': 'off',
+        'react/prop-types': 'off',
+        'object-curly-newline': 'off',
     }
 };

@@ -18,16 +18,6 @@ body {
   padding-bottom: 15px;
 }
 
-.header {
-  font-size: 22px;
-  color: white;
-}
-
 .songSection {
   margin: 0 30px;
-}
-
-.songPageHeader {
-  background-color: #61dafb;
-  height: 100px;
 }
