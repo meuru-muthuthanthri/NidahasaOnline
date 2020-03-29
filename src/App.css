@@ -7,15 +7,15 @@ body {
 
 .lyrics {
   color: #F29849;
-  font-size: 30px;
+  font-size: 10px;
 }
 .chords {
   position: absolute;
-  font-size: 20px;
+  font-size: 10px;
   color: #F2E74B;
 }
 .chordsLine {
-  padding-bottom: 15px;
+  padding-bottom: 5px;
 }
 
 .songSection {
