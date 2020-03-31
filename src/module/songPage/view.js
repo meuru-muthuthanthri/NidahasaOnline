@@ -3,15 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import HomeIcon from '@material-ui/icons/Home';
-import SongView from './components/SongView';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import MusicOffIcon from '@material-ui/icons/MusicOff';
+import { isMobile } from 'react-device-detect';
+import SongView from './components/SongView';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,7 +33,7 @@ export default ({ showChords, currentSong, title,
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h4" className={classes.title}>{title}</Typography>
+          <Typography variant={isMobile ? 'h7' : 'h4'} className={classes.title}>{title}</Typography>
           <IconButton color="secondary" aria-label="go back" onClick={onShowChordToggle}>
             { showChords ? <MusicNoteIcon style={{ color: 'white' }} /> : <MusicOffIcon style={{ color: 'white' }} /> }
           </IconButton>
@@ -44,7 +42,7 @@ export default ({ showChords, currentSong, title,
           </IconButton>
         </Toolbar>
       </AppBar>
-      <SongView currentSong={currentSong} showChords={showChords} />
+      <SongView lyricsSize={isMobile ? '12px' : '20px'} chordSize={isMobile ? '12px' : '20px'} currentSong={currentSong} showChords={showChords} />
     </div>
   );
 };

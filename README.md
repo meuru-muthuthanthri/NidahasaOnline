@@ -1,4 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Features to do
+- Zoom in and zoom out 
+- Transposing to other keys 
+- Organizing according to topics 
+- Attachment of a recording 
+- Feature to select a set of hymns needed for one time (Bookmark) so that in one swipe it will move to the next selected hymn 
+- While bookmarked hymns are there, search another hymn 
+- connectability/ exporting lyrics to power point
 
 ## Available Scripts
 
@@ -66,3 +74,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+

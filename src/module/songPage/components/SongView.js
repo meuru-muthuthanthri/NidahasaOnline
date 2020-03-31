@@ -23,10 +23,10 @@ export default class SongView extends React.Component {
   }
 
   render() {
-    const { showChords, currentSong } = this.props;
+    const { showChords, currentSong, lyricsSize, chordSize } = this.props;
     return (
       <div className="songSection">
-        { renderSong(currentSong, showChords) }
+        { renderSong(currentSong, showChords, lyricsSize, chordSize) }
       </div>
     );
   }

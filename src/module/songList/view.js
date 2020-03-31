@@ -1,14 +1,14 @@
 import React from 'react';
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import Button from '@material-ui/core/Button';
+import { isMobile } from 'react-device-detect';
+import _ from 'lodash';
 import { getSongs } from '../../repository/SongReader';
 
-import _ from 'lodash';
+const songs = getSongs();
 
-let songs = getSongs();
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -26,33 +26,32 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 3,
     border: 0,
     color: 'white',
-    height: 48,
     padding: '20px 30px',
-    marginBottom: '5px',
+    marginBottom: isMobile ? '2px' : '5px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
   label: {
-    fontSize: 20,
+    fontSize: isMobile ? 12 : 20,
     justifyContent: 'left',
-    marginLeft: '20px'
-  }
+    marginLeft: isMobile ? '10px' : '20px',
+  },
 }));
 
 export default function ({ onClickSong }) {
   const classes = useStyles();
-  return(
+  return (
     <div className={classes.root}>
-      <GridList cellHeight={40} cols={1}>
-        {_.keys(songs).map((songName, index) => (
-            <Button variant="contained" color="primary" classes={{
-              root: classes.bRoot, // class name, e.g. `classes-nesting-root-x`
-              label: classes.label, // class name, e.g. `classes-nesting-label-x`
-            }} onClick={() => onClickSong(songName)} key={songName}
-            >
-              {`${index + 1}. ${songName}`}
-            </Button>
+      <GridList cellHeight={isMobile ? 20 : 40} cols={1}>
+        { _.keys(songs).map((songName, index) => (
+          <Button variant="contained" color="primary" classes={{
+            root: classes.bRoot, // class name, e.g. `classes-nesting-root-x`
+            label: classes.label, // class name, e.g. `classes-nesting-label-x`
+          }} onClick={() => onClickSong(songName)} key={songName}
+          >
+            {`${index + 1}. ${songName}`}
+          </Button>
         ))}
       </GridList>
     </div>
-  )
+  );
 }
