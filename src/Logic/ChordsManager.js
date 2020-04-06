@@ -1,9 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
+import { transpose } from 'chord-transposer';
 
 const CHORD_REGEX = /\[([^\]]*)\]/g;
 
-export const renderLine = (line = '', id, withChords, lyricsSize, chordSize) => {
+export const renderLine = (line = '', id, { showChords, lyricsSize, chordSize, key, newKey }) => {
   const split = line.split(CHORD_REGEX);
   const wordList = split
     .filter((val, index) => index % 2 === 0)
@@ -19,11 +20,11 @@ export const renderLine = (line = '', id, withChords, lyricsSize, chordSize) => 
     [wordList.shift()],
   );
 
-  const chords = withChords ? chordList.reduce(
-    (newLine, chord, index) => newLine
-      .concat(<span style={{ fontSize: chordSize }} className="chords" id={`ch_${id}${index}`}>{chord}</span>),
-    [],
-  ) : null;
+  const chords = showChords ? chordList
+    .map(chord => transpose(chord).fromKey(key).toKey(newKey).toString())
+    .reduce((newLine, chord, index) => newLine
+      .concat(<span style={{ fontSize: chordSize }} className="chords" id={`ch_${id}${index}`}>{chord}</span>), [])
+    : null;
 
   return (
     <div>
@@ -35,10 +36,10 @@ export const renderLine = (line = '', id, withChords, lyricsSize, chordSize) => 
 
 const renderEmptyLine = () => (<div className="emptyLine"><br /><br /></div>);
 
-export const renderSong = (song = '', withChords = true, lyricsSize, chordSize) => {
+export const renderSong = (song = '', params) => {
   return song
     .split(/\n/g)
-    .map((line, index) => (line === '' ? renderEmptyLine() : renderLine(line, index, withChords, lyricsSize, chordSize)));
+    .map((line, index) => (line === '' ? renderEmptyLine() : renderLine(line, index, params)));
 };
 
 export const getTags = (song = '') =>

@@ -2771,6 +2771,14 @@ chokidar@^3.3.0:
   optionalDependencies:
     fsevents "~2.1.2"
 
+chord-transposer@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/chord-transposer/-/chord-transposer-2.2.1.tgz#a3a1f9c0e6f50d62c7da6773a494fb9142a1fd96"
+  integrity sha512-M7Q62t/ERYyi8RlO6waBPa2G70BsKUDHjYMcHG9ZWhA7eFr9P6wTUv6PSZ3Rafgx5u8LLbJnCFzIVhBV3UO6tQ==
+  dependencies:
+    ts-enums "0.0.6"
+    xregexp "^4.2.4"
+
 chownr@^1.1.1, chownr@^1.1.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
@@ -10252,6 +10260,11 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
+ts-enums@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/ts-enums/-/ts-enums-0.0.6.tgz#2be2c90ed1b81a696d1bb6e3c7c10915a9f0b8e6"
+  integrity sha1-K+LJDtG4GmltG7bjx8EJFanwuOY=
+
 ts-pnp@1.1.6, ts-pnp@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.1.6.tgz#389a24396d425a0d3162e96d2b4638900fdc289a"
@@ -10990,7 +11003,7 @@ xmlchars@^2.1.1:
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
-xregexp@^4.3.0:
+xregexp@^4.2.4, xregexp@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/xregexp/-/xregexp-4.3.0.tgz#7e92e73d9174a99a59743f67a4ce879a04b5ae50"
   integrity sha512-7jXDIFXh5yJ/orPn4SXjuVrWWoi4Cr8jfV1eHv9CixKSbU+jY4mxfrBwAuDvupPNKpMUY+FeIqsVw/JLT9+B8g==

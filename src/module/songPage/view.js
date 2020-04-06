@@ -1,48 +1,57 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import MusicOffIcon from '@material-ui/icons/MusicOff';
 import { isMobile } from 'react-device-detect';
+import Button from '@material-ui/core/Button';
 import SongView from './components/SongView';
+import ChordDialog from './components/ChordDialog';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
+    backgroundColor: '#150940',
+    color: 'white',
+    padding: '2px',
+    textTransform: 'none',
   },
   title: {
     flexGrow: 1,
   },
+  iconButton: {
+    padding: '2px',
+    color: 'white',
+  },
 }));
 
-export default ({ showChords, currentSong, title,
-  onShowChordToggle, onGoHomePressed }) => {
+export default ({ showChords, currentSong, title, chord, originalChord,
+  onShowChordToggle, onGoHomePressed, onTranspose }) => {
   const classes = useStyles();
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+          <ChordDialog original={originalChord} selected={chord} onSelect={onTranspose} />
+          <Typography variant={isMobile ? 'subtitle1' : 'h4'} className={classes.title}>{title}</Typography>
+          <IconButton className={classes.iconButton} aria-label="go back" onClick={onShowChordToggle}>
+            { !showChords ? <MusicNoteIcon /> : <MusicOffIcon /> }
           </IconButton>
-          <Typography variant={isMobile ? 'h7' : 'h4'} className={classes.title}>{title}</Typography>
-          <IconButton color="secondary" aria-label="go back" onClick={onShowChordToggle}>
-            { showChords ? <MusicNoteIcon style={{ color: 'white' }} /> : <MusicOffIcon style={{ color: 'white' }} /> }
-          </IconButton>
-          <IconButton color="secondary" aria-label="go back" onClick={onGoHomePressed}>
-            <HomeIcon style={{ color: 'white' }} />
+          <IconButton className={classes.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
+            <HomeIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <SongView lyricsSize={isMobile ? '12px' : '20px'} chordSize={isMobile ? '12px' : '20px'} currentSong={currentSong} showChords={showChords} />
+      <SongView lyricsSize={isMobile ? '12px' : '20px'} chordSize={isMobile ? '12px' : '20px'}
+                chord={chord} originalChord={originalChord}
+                currentSong={currentSong} showChords={showChords} />
     </div>
   );
 };

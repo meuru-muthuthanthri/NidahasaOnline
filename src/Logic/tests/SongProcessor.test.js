@@ -15,6 +15,4 @@ test('renders learn react link', () => {
   expect(result.song2).toBe();
   expect(result.song3).toBe();
   expect(result.song4.song).toBe('Hello');
-
-
 });
