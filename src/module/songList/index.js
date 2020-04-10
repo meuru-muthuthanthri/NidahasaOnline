@@ -4,7 +4,8 @@ import View from './view';
 import { SONG_PAGE } from '../Constants';
 
 const mapStateToProps = state => ({
-  showChords: state.songPage.get('showChords'),
+  titles: state.songList.get('filteredTitles'),
+  songs: state.songList.get('songs'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -12,6 +13,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(Actions.songList.navigateToSong(songName));
     Actions.global.navigateTo(SONG_PAGE);
   },
+  onSearch: text => dispatch(Actions.songList.onSearch(text)),
 });
 
 const component = connect(mapStateToProps, mapDispatchToProps)(View);

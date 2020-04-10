@@ -15,7 +15,10 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => ({
   onShowChordToggle: () => dispatch(Actions.songPage.onShowChordToggle()),
-  onGoHomePressed: () => Actions.global.navigateTo(HOME_SCREEN),
+  onGoHomePressed: () => {
+    Actions.global.navigateTo(HOME_SCREEN);
+    dispatch(Actions.songList.reloadTitles());
+  },
   onTranspose: chord => dispatch(Actions.songPage.onTranspose(chord)),
 });
 

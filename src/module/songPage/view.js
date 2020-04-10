@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
+  offset: theme.mixins.toolbar,
   menuButton: {
     marginRight: theme.spacing(1),
     backgroundColor: '#150940',
@@ -37,7 +38,7 @@ export default ({ showChords, currentSong, title, chord, originalChord,
   const classes = useStyles();
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <ChordDialog original={originalChord} selected={chord} onSelect={onTranspose} />
           <Typography variant={isMobile ? 'subtitle1' : 'h4'} className={classes.title}>{title}</Typography>
@@ -49,6 +50,7 @@ export default ({ showChords, currentSong, title, chord, originalChord,
           </IconButton>
         </Toolbar>
       </AppBar>
+      <div className={classes.offset} />
       <SongView lyricsSize={isMobile ? '12px' : '20px'} chordSize={isMobile ? '12px' : '20px'}
                 chord={chord} originalChord={originalChord}
                 currentSong={currentSong} showChords={showChords} />
