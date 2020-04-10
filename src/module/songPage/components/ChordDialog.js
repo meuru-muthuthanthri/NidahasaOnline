@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     padding: 0,
     textTransform: 'none',
-    minWidth: '30px',
+    minWidth: '7vmin',
+    minHeight: '7vmin',
   },
   normalChord: {
     backgroundColor: '#150940',
