@@ -7,6 +7,7 @@ const Events = {
   ON_SEARCH: 'ON_SEARCH',
   LOAD_SONGS: 'LOAD_SONGS',
   RELOAD_SONG_TITLES: 'RELOAD_SONG_TITLES',
+  TOGGLE_SINGLISH_MODE: 'TOGGLE_SINGLISH_MODE',
 };
 
 const Actions = {
@@ -14,6 +15,7 @@ const Actions = {
   onSearch: createAction(Events.ON_SEARCH),
   reloadTitles: createAction(Events.RELOAD_SONG_TITLES),
   loadSongs: createAction(Events.LOAD_SONGS, () => processSongs(getSongs())),
+  toggleSinlighsMode: createAction(Events.TOGGLE_SINGLISH_MODE),
 };
 
 export default {

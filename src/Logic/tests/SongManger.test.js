@@ -28,4 +28,12 @@ describe('filterTitles', () => {
     console.log(result);
     expect(result).toStrictEqual(['Hello']);
   });
+
+  it('Sinhala', () => {
+    const titles = ['Ada', 'aaah', 'මම', 'අත්තික්කා ඵල නැතත්'];
+    const result = filterTitles(titles, 'a', "අ");
+    console.log(result);
+    expect(result).toStrictEqual(['Ada', 'aaah', 'අත්තික්කා ඵල නැතත්']);
+  });
 });
+``

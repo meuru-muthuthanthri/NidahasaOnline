@@ -14,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -79,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({ onSearch }) {
+export default function PrimarySearchAppBar({ singlishMode, onSearch, toggleSinlighsMode, sinhalaSearchText }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -161,9 +163,7 @@ export default function PrimarySearchAppBar({ onSearch }) {
     </Menu>
   );
 
-//   const onSearch = ({ target }) => {
-//     console.log("############", target.value);
-//   }
+const toggleChecked = () => {};
 
   return (
     <div className={classes.grow}>
@@ -194,6 +194,18 @@ export default function PrimarySearchAppBar({ onSearch }) {
               onChange={({ target }) => onSearch(target.value)}
             />
           </div>
+          <div>
+            <FormControlLabel
+                       control={<Switch size="small" checked={singlishMode} onChange={toggleSinlighsMode} />}
+                       label="Singlish"
+                       labelPlacement="top"
+            />
+
+          </div>
+          {singlishMode ? <Typography className={classes.title} variant="h6" noWrap>
+                                  {sinhalaSearchText}
+                                </Typography> : null
+          }
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">

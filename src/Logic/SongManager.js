@@ -10,6 +10,10 @@ export const splitTitle = (str = '') => {
 
 export const processSongs = (songs) => ({ songs, titles: _.keys(songs) });
 
-export const filterTitles = (titles, text) => {
-  return titles.filter(title => title.toLowerCase().includes(text.toLowerCase()));
+export const filterTitles = (titles, text, sinhalaText) => {
+  return titles.filter(
+    title => {
+      return title.toLowerCase().includes(text.toLowerCase()) || (sinhalaText && title.includes(sinhalaText))
+    }
+  );
 };

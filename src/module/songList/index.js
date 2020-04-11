@@ -6,6 +6,8 @@ import { SONG_PAGE } from '../Constants';
 const mapStateToProps = state => ({
   titles: state.songList.get('filteredTitles'),
   songs: state.songList.get('songs'),
+  singlishMode: state.songList.get('singlishMode'),
+  sinhalaSearchText: state.songList.get('sinhalaSearchText'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -14,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
     Actions.global.navigateTo(SONG_PAGE);
   },
   onSearch: text => dispatch(Actions.songList.onSearch(text)),
+  toggleSinlighsMode: () => dispatch(Actions.songList.toggleSinlighsMode()),
 });
 
 const component = connect(mapStateToProps, mapDispatchToProps)(View);

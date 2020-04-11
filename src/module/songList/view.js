@@ -36,12 +36,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ({ titles, songs,
-  onClickSong, onSearch }) {
+export default function ({ titles, songs, singlishMode, sinhalaSearchText,
+  onClickSong, onSearch, toggleSinlighsMode,
+}) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar onSearch={onSearch} />
+      <AppBar onSearch={onSearch} singlishMode={singlishMode} toggleSinlighsMode={toggleSinlighsMode}
+              sinhalaSearchText={sinhalaSearchText}
+      />
       <div className={classes.offset} >.</div>
       <GridList className={classes.gridList} cellHeight={isMobile ? 20 : 40} cols={1}>
         { titles.map((songName, index) => (
