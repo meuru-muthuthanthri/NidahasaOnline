@@ -16,13 +16,15 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    padding: isMobile ? '6px' : '12px',
+//     marginRight: theme.spacing(2),
   },
   title: {
     display: 'none',
@@ -37,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    marginRight: theme.spacing(2),
+    marginRight: 0,
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -46,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 0.5),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -58,9 +60,9 @@ const useStyles = makeStyles((theme) => ({
     color: 'inherit',
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: '6px',
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    paddingLeft: `calc(1em + ${theme.spacing(1.5)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -193,6 +195,10 @@ const toggleChecked = () => {};
               inputProps={{ 'aria-label': 'search' }}
               onChange={({ target }) => onSearch(target.value)}
             />
+            {singlishMode ? <Typography className={classes.title} variant="h6" noWrap>
+                                              {sinhalaSearchText}
+                                            </Typography> : null
+                      }
           </div>
           <div>
             <FormControlLabel
@@ -202,10 +208,7 @@ const toggleChecked = () => {};
             />
 
           </div>
-          {singlishMode ? <Typography className={classes.title} variant="h6" noWrap>
-                                  {sinhalaSearchText}
-                                </Typography> : null
-          }
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
