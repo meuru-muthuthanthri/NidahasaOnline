@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ({ titles, songs, singlishMode, sinhalaSearchText,
+export default function ({ titles, singlishMode, sinhalaSearchText,
   onClickSong, onSearch, toggleSinlighsMode,
 }) {
   const classes = useStyles();
@@ -51,7 +51,7 @@ export default function ({ titles, songs, singlishMode, sinhalaSearchText,
           <Button variant="contained" color="primary" classes={{
             root: classes.bRoot, // class name, e.g. `classes-nesting-root-x`
             label: classes.label, // class name, e.g. `classes-nesting-label-x`
-          }} onClick={() => onClickSong(songs[songName])} key={songName}
+          }} onClick={() => onClickSong(songName)} key={songName}
           >
             {`${index + 1}. ${songName}`}
           </Button>
