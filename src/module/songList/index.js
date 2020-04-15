@@ -6,6 +6,7 @@ import { readSong } from '../../repository/songRepo';
 
 const mapStateToProps = state => ({
   titles: state.songList.get('filteredTitles'),
+  isLoading: state.songList.get('songList') === null,
 });
 
 const mapDispatchToProps = dispatch => ({

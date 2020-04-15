@@ -4,6 +4,7 @@ import GridList from '@material-ui/core/GridList';
 import Button from '@material-ui/core/Button';
 import { isMobile } from 'react-device-detect';
 import AppBar from './components/AppBar';
+import Splash from './components/Splash';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,16 +37,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ({ titles,
+export default function ({ titles, isLoading,
   onClickSong, onSearch, onClickAddSong,
 }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar onSearch={onSearch}
-              onClickAddSong={onClickAddSong}
-      />
+      <AppBar onSearch={onSearch} onClickAddSong={onClickAddSong} />
       <div className={classes.offset}>.</div>
+      { isLoading ? <Splash /> : null }
       <GridList className={classes.gridList} cellHeight={isMobile ? 20 : 40} cols={1}>
         { titles.map((songName, index) => (
           <Button variant="contained" color="primary" classes={{
