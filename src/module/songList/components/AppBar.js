@@ -16,6 +16,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import QueueRoundedIcon from '@material-ui/icons/QueueRounded';
 import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     padding: isMobile ? '6px' : '12px',
 //     marginRight: theme.spacing(2),
+  },
+  iconButton: {
+    color: 'white',
   },
   title: {
     display: 'none',
@@ -83,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({ singlishMode, onSearch, toggleSinlighsMode, sinhalaSearchText }) {
+export default function PrimarySearchAppBar({ onSearch, onClickAddSong }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -165,8 +169,6 @@ export default function PrimarySearchAppBar({ singlishMode, onSearch, toggleSinl
     </Menu>
   );
 
-const toggleChecked = () => {};
-
   return (
     <div className={classes.grow}>
       <AppBar position="fixed">
@@ -195,18 +197,11 @@ const toggleChecked = () => {};
               inputProps={{ 'aria-label': 'search' }}
               onChange={({ target }) => onSearch(target.value)}
             />
-            {singlishMode ? <Typography className={classes.title} variant="h6" noWrap>
-                                              {sinhalaSearchText}
-                                            </Typography> : null
-                      }
           </div>
           <div>
-            <FormControlLabel
-                       control={<Switch size="small" checked={singlishMode} onChange={toggleSinlighsMode} />}
-                       label="Singlish"
-                       labelPlacement="top"
-            />
-
+            <IconButton className={classes.iconButton} aria-label="go back" onClick={onClickAddSong}>
+              <QueueRoundedIcon />
+            </IconButton>
           </div>
 
           <div className={classes.grow} />

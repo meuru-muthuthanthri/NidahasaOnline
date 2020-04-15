@@ -30,11 +30,4 @@ export const readSongs = db => {
 //   // console.log("####@@@@@@@@@@@@@", user);
 // });
 
-// write data example
-// function writeUserData(userId, name, email, imageUrl) {
-//   firebase.database().ref('songs/' + userId).set({
-//     username: name,
-//     email: email,
-//     profile_picture : imageUrl
-//   });
-// }
+

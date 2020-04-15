@@ -8,7 +8,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import MusicOffIcon from '@material-ui/icons/MusicOff';
 import { isMobile } from 'react-device-detect';
-import Button from '@material-ui/core/Button';
 import SongView from './components/SongView';
 import ChordDialog from './components/ChordDialog';
 

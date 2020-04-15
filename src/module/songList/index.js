@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Actions } from '../Actions';
 import View from './view';
-import { SONG_PAGE } from '../Constants';
+import { SONG_EDITOR, SONG_PAGE } from '../Constants';
 import { readSong } from '../../repository/songRepo';
 
 const mapStateToProps = state => ({
@@ -17,6 +17,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onSearch: text => dispatch(Actions.songList.onSearch(text)),
   toggleSinlighsMode: () => dispatch(Actions.songList.toggleSinlighsMode()),
+  onClickAddSong: () => { Actions.global.navigateTo(SONG_EDITOR); },
 });
 
 const component = connect(mapStateToProps, mapDispatchToProps)(View);
