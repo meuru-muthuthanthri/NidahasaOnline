@@ -1,13 +1,12 @@
 import { Map } from 'immutable';
 import { Events } from '../Actions';
-import { splitTitle } from '../../Logic/SongManager';
 
 const initialState = Map({
   title: null,
   song: '',
 });
 
-const reducer = (state = initialState, { type, payload}) => {
+const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case Events.songEditor.ON_LYRICS_EDIT:
       return state.set('song', payload);

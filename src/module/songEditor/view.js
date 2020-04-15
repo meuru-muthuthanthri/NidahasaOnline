@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import { isMobile } from 'react-device-detect';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -45,15 +44,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default ({ song, title,
-                  onLyricsEdit, onTitleEdit, onGoHomePressed, onSaveSong }) => {
+  onLyricsEdit, onTitleEdit, onGoHomePressed, onSaveSong }) => {
   const classes = useStyles();
-  console.log("################", title);
   const { title: header, chord, key } = splitTitle(title || '');
   return (
     <div>
       <AppBar position="fixed">
         <Toolbar>
-          <TextField id="standard-basic" label="Song Title" className={classes.title} onChange={({ target }) => onTitleEdit(target.value)}/>
+          <TextField id="standard-basic" label="Song Title" className={classes.title} onChange={({ target }) => onTitleEdit(target.value)} />
           <IconButton className={classes.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
             <HomeIcon />
           </IconButton>
@@ -78,8 +76,12 @@ export default ({ song, title,
         <Typography variant={isMobile ? 'subtitle2' : 'h6'} className={classes.title}>{`Chord:${chord}`}</Typography>
         <Typography variant={isMobile ? 'subtitle2' : 'h6'} className={classes.title}>{`Key: ${key}`}</Typography>
       </div>
-      <SongView lyricsSize={isMobile ? '12px' : '20px'} chordSize={isMobile ? '12px' : '20px'}
-                currentSong={song} showChords={true} />
+      <SongView
+        lyricsSize={isMobile ? '12px' : '20px'}
+        chordSize={isMobile ? '12px' : '20px'}
+        currentSong={song}
+        showChords={true}
+      />
       <div className={classes.buttonSection}>
         <Button
           variant="contained"

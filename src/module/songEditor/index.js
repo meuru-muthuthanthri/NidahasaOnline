@@ -2,14 +2,13 @@ import { connect } from 'react-redux';
 import { Actions } from '../Actions';
 import EditSongPageView from './view';
 import { HOME_SCREEN } from '../Constants';
-import { readSong, saveSong } from '../../repository/songRepo';
+import { saveSong } from '../../repository/songRepo';
 
-const mapStateToProps = state => {
-  return {
-    song: state.songEditor.get('song'),
-    title: state.songEditor.get('title'),
-  };
-};
+const mapStateToProps = state => ({
+  song: state.songEditor.get('song'),
+  title: state.songEditor.get('title'),
+});
+
 const mapDispatchToProps = dispatch => ({
   onGoHomePressed: () => {
     Actions.global.navigateTo(HOME_SCREEN);

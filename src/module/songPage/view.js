@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -50,9 +50,14 @@ export default ({ showChords, currentSong, title, chord, originalChord,
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
-      <SongView lyricsSize={isMobile ? '12px' : '20px'} chordSize={isMobile ? '12px' : '20px'}
-                chord={chord} originalChord={originalChord}
-                currentSong={currentSong} showChords={showChords} />
+      <SongView
+        lyricsSize={isMobile ? '12px' : '20px'}
+        chordSize={isMobile ? '12px' : '20px'}
+        chord={chord}
+        originalChord={originalChord}
+        currentSong={currentSong}
+        showChords={showChords}
+      />
     </div>
   );
 };

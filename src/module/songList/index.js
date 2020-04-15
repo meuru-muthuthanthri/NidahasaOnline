@@ -6,8 +6,6 @@ import { readSong } from '../../repository/songRepo';
 
 const mapStateToProps = state => ({
   titles: state.songList.get('filteredTitles'),
-  singlishMode: state.songList.get('singlishMode'),
-  sinhalaSearchText: state.songList.get('sinhalaSearchText'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -16,7 +14,6 @@ const mapDispatchToProps = dispatch => ({
     Actions.global.navigateTo(SONG_PAGE);
   },
   onSearch: text => dispatch(Actions.songList.onSearch(text)),
-  toggleSinlighsMode: () => dispatch(Actions.songList.toggleSinlighsMode()),
   onClickAddSong: () => { Actions.global.navigateTo(SONG_EDITOR); },
 });
 
