@@ -11,6 +11,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import Typography from '@material-ui/core/Typography';
 import SongView from '../songPage/components/SongView';
 import { splitTitle } from '../../Logic/SongManager';
+import Slide from '@material-ui/core/slide';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   },
   previewBox: {
     margin: '10px',
-    display: 'flex'
+    display: 'flex',
   },
   buttonSection: {
     display: 'flex',
@@ -87,6 +88,7 @@ export default ({ song, title,
         showChords
       />
       <div className={classes.buttonSection}>
+        <Slide direction="up" in style={{ transitionDelay: '200ms' }} mountOnEnter unmountOnExit>
         <Button
           variant="contained"
           color="primary"
@@ -96,6 +98,7 @@ export default ({ song, title,
         >
           Save and Exit
         </Button>
+        </Slide>
       </div>
     </div>
   );
