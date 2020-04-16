@@ -21,7 +21,7 @@ export const renderLine = (line = '', id, { showChords, lyricsSize, chordSize, k
   );
 
   const chords = showChords ? chordList
-    .map(chord => transpose(chord).fromKey(key).toKey(newKey).toString())
+    .map(chord => (key === newKey ? chord : transpose(chord).fromKey(key).toKey(newKey).toString()))
     .reduce((newLine, chord, index) => newLine
       .concat(<span style={{ fontSize: chordSize }} className="chords" id={`ch_${id}${index}`}>{chord}</span>), [])
     : null;

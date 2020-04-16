@@ -8,6 +8,8 @@ const initialState = Map({
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case Events.songEditor.NAVIGATE:
+      return state.set('song', '').set('title', null);
     case Events.songEditor.ON_LYRICS_EDIT:
       return state.set('song', payload);
     case Events.songEditor.ON_TITLE_EDIT:

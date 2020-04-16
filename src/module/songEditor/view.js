@@ -31,10 +31,14 @@ const useStyles = makeStyles(theme => ({
     padding: '2px',
     color: 'white',
   },
-  inputBox: {
+  lyricsInputBox: {
     backgroundColor: '#fcfcfb',
     display: 'flex',
     margin: '10px',
+  },
+  previewBox: {
+    margin: '10px',
+    display: 'flex'
   },
   buttonSection: {
     display: 'flex',
@@ -51,7 +55,7 @@ export default ({ song, title,
     <div>
       <AppBar position="fixed">
         <Toolbar>
-          <TextField id="standard-basic" label="Song Title" className={classes.title} onChange={({ target }) => onTitleEdit(target.value)} />
+          <TextField id="standard-basic" label="Song Title" className={classes.title} placeholder="Title <SPACE> Chord <SPACE> Beat" onChange={({ target }) => onTitleEdit(target.value)} />
           <IconButton className={classes.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
             <HomeIcon />
           </IconButton>
@@ -60,27 +64,27 @@ export default ({ song, title,
       <div className={classes.offset} />
       <TextField
         id="filled-full-width"
-        className={classes.inputBox}
+        className={classes.lyricsInputBox}
         label="Song lyrics"
         placeholder="Type here"
         onChange={({ target }) => onLyricsEdit(target.value)}
-        helperText="Enter the full song with Chords"
+        helperText="Enter the full song with Chords, without the title"
         multiline
         InputLabelProps={{
           shrink: true,
         }}
         variant="filled"
       />
-      <div>
-        <Typography variant={isMobile ? 'subtitle1' : 'h4'} className={classes.title}>{`Name: ${header}`}</Typography>
-        <Typography variant={isMobile ? 'subtitle2' : 'h6'} className={classes.title}>{`Chord:${chord}`}</Typography>
-        <Typography variant={isMobile ? 'subtitle2' : 'h6'} className={classes.title}>{`Key: ${key}`}</Typography>
+      <div className={classes.previewBox}>
+        <Typography variant={isMobile ? 'subtitle2' : 'h4'} className={classes.title}>{`Name: ${header}`}</Typography>
+        <Typography variant={isMobile ? 'subtitle2' : 'h6'} className={classes.title}>{`Chord: ${chord || 'TBA'}`}</Typography>
+        <Typography variant={isMobile ? 'subtitle2' : 'h6'} className={classes.title}>{`Beat: ${key || 'TBA'}`}</Typography>
       </div>
       <SongView
         lyricsSize={isMobile ? '12px' : '20px'}
         chordSize={isMobile ? '12px' : '20px'}
         currentSong={song}
-        showChords={true}
+        showChords
       />
       <div className={classes.buttonSection}>
         <Button

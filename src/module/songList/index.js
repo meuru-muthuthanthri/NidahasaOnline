@@ -15,7 +15,10 @@ const mapDispatchToProps = dispatch => ({
     Actions.global.navigateTo(SONG_PAGE);
   },
   onSearch: text => dispatch(Actions.songList.onSearch(text)),
-  onClickAddSong: () => { Actions.global.navigateTo(SONG_EDITOR); },
+  onClickAddSong: () => {
+    dispatch(Actions.songEditor.navigateToSongEditor());
+    Actions.global.navigateTo(SONG_EDITOR);
+    },
 });
 
 const component = connect(mapStateToProps, mapDispatchToProps)(View);
