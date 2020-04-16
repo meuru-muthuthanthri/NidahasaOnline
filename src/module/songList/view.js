@@ -49,7 +49,7 @@ export default function ({ titles, isLoading,
       { isLoading ? <Splash /> : null }
       <GridList className={classes.gridList} cellHeight={isMobile ? 20 : 40} cols={1}>
         { titles.map((songName, index) => (
-          <Slide direction="left" in style={{ transitionDelay: `${index}0ms` }} mountOnEnter unmountOnExit>
+          <Slide direction="left" in style={{ transitionDelay: `${index}0ms` }}>
           <Button variant="contained" color="primary" classes={{
             root: classes.bRoot, // class name, e.g. `classes-nesting-root-x`
             label: classes.label, // class name, e.g. `classes-nesting-label-x`

@@ -8,6 +8,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import MusicOffIcon from '@material-ui/icons/MusicOff';
 import { isMobile } from 'react-device-detect';
+import Slide from '@material-ui/core/Slide';
 import SongView from './components/SongView';
 import ChordDialog from './components/ChordDialog';
 
@@ -41,12 +42,16 @@ export default ({ showChords, currentSong, title, chord, originalChord,
         <Toolbar>
           <ChordDialog original={originalChord} selected={chord} onSelect={onTranspose} />
           <Typography variant={isMobile ? 'subtitle1' : 'h4'} className={classes.title}>{title}</Typography>
-          <IconButton className={classes.iconButton} aria-label="go back" onClick={onShowChordToggle}>
-            { !showChords ? <MusicNoteIcon /> : <MusicOffIcon /> }
-          </IconButton>
-          <IconButton className={classes.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
-            <HomeIcon />
-          </IconButton>
+          <Slide direction="left" in>
+            <IconButton className={classes.iconButton} aria-label="go back" onClick={onShowChordToggle}>
+              { !showChords ? <MusicNoteIcon /> : <MusicOffIcon /> }
+            </IconButton>
+          </Slide>
+          <Slide direction="left" in style={{ transitionDelay: '100ms' }}>
+            <IconButton className={classes.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
+              <HomeIcon />
+            </IconButton>
+          </Slide>
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
