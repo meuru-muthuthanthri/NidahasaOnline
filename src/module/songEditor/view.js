@@ -9,9 +9,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import Typography from '@material-ui/core/Typography';
+import Slide from '@material-ui/core/Slide';
 import SongView from '../songPage/components/SongView';
 import { splitTitle } from '../../Logic/SongManager';
-import Slide from '@material-ui/core/slide';
 
 const useStyles = makeStyles(theme => ({
   root: {

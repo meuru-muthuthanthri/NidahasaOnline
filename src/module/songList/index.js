@@ -11,6 +11,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onClickSong: (songName) => {
+    console.log("###############");
+    dispatch(Actions.songPage.prepareSongLoad(songName));
     readSong(window.db, songName).then(song => dispatch(Actions.songList.navigateToSong(song)));
     Actions.global.navigateTo(SONG_PAGE);
   },
@@ -18,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
   onClickAddSong: () => {
     dispatch(Actions.songEditor.navigateToSongEditor());
     Actions.global.navigateTo(SONG_EDITOR);
-    },
+  },
 });
 
 const component = connect(mapStateToProps, mapDispatchToProps)(View);

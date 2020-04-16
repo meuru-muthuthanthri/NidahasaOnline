@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import Button from '@material-ui/core/Button';
 import { isMobile } from 'react-device-detect';
+import Slide from '@material-ui/core/Slide';
 import AppBar from './components/AppBar';
 import Splash from './components/Splash';
-import Slide from '@material-ui/core/Slide';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,13 +50,13 @@ export default function ({ titles, isLoading,
       <GridList className={classes.gridList} cellHeight={isMobile ? 20 : 40} cols={1}>
         { titles.map((songName, index) => (
           <Slide direction="left" in style={{ transitionDelay: `${index}0ms` }}>
-          <Button variant="contained" color="primary" classes={{
-            root: classes.bRoot, // class name, e.g. `classes-nesting-root-x`
-            label: classes.label, // class name, e.g. `classes-nesting-label-x`
-          }} onClick={() => onClickSong(songName)} key={songName}
-          >
-            {`${index + 1}. ${songName}`}
-          </Button>
+            <Button variant="contained" color="primary" classes={{
+              root: classes.bRoot, // class name, e.g. `classes-nesting-root-x`
+              label: classes.label, // class name, e.g. `classes-nesting-label-x`
+            }} onClick={() => onClickSong(songName)} key={songName}
+            >
+              {`${index + 1}. ${songName}`}
+            </Button>
           </Slide>
         ))}
       </GridList>

@@ -37,7 +37,7 @@ const initialState = Map({
 
 const reducer = (state = initialState, { type, payload}) => {
   switch (type) {
-    case 'SHOW_CHORD_TOGGLED':
+    case Events.songPage.SHOW_CHORD_TOGGLED:
       return state.set('showChords', !state.get('showChords'));
     case Events.songList.NAVIGATED_TO_SONG: {
       const { title: titleStr, song } = payload;
@@ -46,6 +46,9 @@ const reducer = (state = initialState, { type, payload}) => {
         .set('title', `${title} - ${key}`)
         .set('chord', chord)
         .set('originalChord', chord);
+    }
+    case Events.songPage.PREPARE_SONG_LOAD: {
+      return state.set('song', '').set('title', payload).set('chord', null);
     }
     case Events.songPage.ON_TRANSPOSE:
       return state.set('chord', payload);
