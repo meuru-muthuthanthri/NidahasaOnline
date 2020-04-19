@@ -8,7 +8,7 @@ export const renderLine = (line = '', id, { showChords, lyricsSize, chordSize, k
   const split = line.split(CHORD_REGEX);
   const wordList = split
     .filter((val, index) => index % 2 === 0)
-    .map((word, index) => ((word === '' && index !== 0) ? ' . . . ' : `${word}`));
+    .map((word, index) => ((word.length <= 3 && index !== 0) ? `${word} . . . ` : `${word}`));
 
   const chordList = split.filter((val, index) => index % 2 === 1);
 
