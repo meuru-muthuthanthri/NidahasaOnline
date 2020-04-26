@@ -4,6 +4,8 @@ import GridList from '@material-ui/core/GridList';
 import Button from '@material-ui/core/Button';
 import { isMobile } from 'react-device-detect';
 import Slide from '@material-ui/core/Slide';
+import Toolbar from '@material-ui/core/Toolbar';
+
 import AppBar from './components/AppBar';
 import Splash from './components/Splash';
 
@@ -15,9 +17,9 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     flexGrow: 1,
   },
-  offset: theme.mixins.toolbar,
   gridList: {
     width: '100%',
+    bottom: '100px',
   },
   button: {
     padding: '30px',
@@ -44,8 +46,8 @@ export default function ({ titles, isLoading,
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar onSearch={onSearch} onClickAddSong={onClickAddSong} />
-      <div className={classes.offset}>.</div>
+      <AppBar onSearch={onSearch} onClickAddSong={onClickAddSong} className={classes.appBar} />
+      <Toolbar />
       { isLoading ? <Splash /> : null }
       <GridList className={classes.gridList} cellHeight={isMobile ? 20 : 40} cols={1}>
         { titles.map((songName, index) => (

@@ -1,12 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 #Features to do
 - Zoom in and zoom out 
-- Transposing to other keys 
 - Organizing according to topics 
+- Night mode
 - Attachment of a recording 
-- Feature to select a set of hymns needed for one time (Bookmark) so that in one swipe it will move to the next selected hymn 
-- While bookmarked hymns are there, search another hymn 
+- Book mark hymns
+- Singlish search for sinhala hymns
 - connectability/ exporting lyrics to power point
+- Change favicon
 
 ## Available Scripts
 

@@ -19,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
   onSaveSong: (title, song) => {
     saveSong(window.db, title, song);
     Actions.global.navigateTo(HOME_SCREEN);
+    dispatch(Actions.songList.navigateToSongList());
   },
 });
 
