@@ -3,10 +3,11 @@ import { Actions } from '../Actions';
 import View from './view';
 import { SONG_EDITOR, SONG_PAGE } from '../Constants';
 import { readSong } from '../../repository/songRepo';
+import { getFilteredTitles } from '../../Logic/SongManager';
 
 const mapStateToProps = state => ({
-  titles: state.songList.get('filteredTitles'),
-  isLoading: state.songList.get('songList') === null,
+  titles: getFilteredTitles(state.songList.get('titles')),
+  isLoading: state.songList.get('titles').isEmpty(),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(Actions.songEditor.navigateToSongEditor());
     Actions.global.navigateTo(SONG_EDITOR);
   },
-  onClickPinSong: pinned => dispatch(Actions.songList.onClickPinSong(pinned)),
+  onClickPinSong: (title, pinned) => dispatch(Actions.songList.onClickPinSong({ title, pinned })),
 });
 
 const component = connect(mapStateToProps, mapDispatchToProps)(View);

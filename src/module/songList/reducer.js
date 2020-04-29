@@ -1,27 +1,26 @@
 import { Map } from 'immutable';
-import _ from 'lodash';
 import { Events } from '../Actions';
-import { filterTitles } from '../../Logic/SongManager';
+import { filterTitles, processSongTitles } from '../../Logic/SongManager';
 
 const initialState = Map({
-  songList: null,
-  titles: [],
-  filteredTitles: [],
+  titles: Map(),
   searchText: null,
 });
 
 const reducer = (state = initialState, { type, payload}) => {
   switch (type) {
     case Events.songList.DISPLAY_SONG_LIST: {
-      return state.set('songList', payload).set('filteredTitles', _.keys(payload));
+      return state.set('titles', processSongTitles(payload));
     }
     case Events.songList.ON_SEARCH: {
-      const searchText = payload !== '' ? payload : null;
-      return state.set('filteredTitles', filterTitles(_.keys(state.get('songList')), payload))
-        .set('searchText', searchText);
+      return state.set('titles', filterTitles(state.get('titles'), payload))
+        .set('searchText', payload);
     }
     case Events.songList.RELOAD_SONG_TITLES:
-      return state.set('filteredTitles', _.keys(state.get('songList')));
+      return state.set('titles', filterTitles(state.get('titles')));
+    case Events.songList.PIN_SONG_CLICKED: {
+      return state.setIn(['titles', payload.title, 'pinned'], payload.pinned);
+    }
     default:
       return state;
   }

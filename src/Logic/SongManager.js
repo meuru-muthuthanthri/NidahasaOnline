@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { fromJS } from 'immutable';
 
 export const splitTitle = (str = '') => {
   const strList = str.split(/(\s+)/).filter(str => str.trim().length > 0 && str !== '-');
@@ -8,12 +8,18 @@ export const splitTitle = (str = '') => {
   return { title, chord, key };
 };
 
-export const processSongs = (songs) => ({ songs, titles: _.keys(songs) });
-
-export const filterTitles = (titles, text, sinhalaText) => {
-  return titles.filter(
-    title => {
-      return title.toLowerCase().includes(text.toLowerCase()) || (sinhalaText && title.includes(sinhalaText))
-    }
-  );
+export const filterTitles = (titles, text = '') => {
+  const trimmedText = text.trim();
+  return titles.map((val, key) => val.set('filteredOut', !key.toLowerCase().includes(trimmedText.toLowerCase())));
 };
+
+export const getFilteredTitles = (titles) => {
+  return titles
+    .filter(val => !val.get('filteredOut'))
+    .map((val, key) => ({ title: key, pinned: !!val.get('pinned') }))
+    .toList()
+    .toArray();
+};
+
+export const processSongTitles = payload => fromJS(payload)
+  .sortBy(val => val.get('title'));

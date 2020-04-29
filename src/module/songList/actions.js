@@ -15,7 +15,7 @@ const Actions = {
   reloadTitles: createAction(Events.RELOAD_SONG_TITLES),
   displaySongList: createAction(Events.DISPLAY_SONG_LIST, songList => songList),
   navigateToSongList: createAction(Events.NAVIGATE, text => text),
-  onClickPinSong: createAction(Events.PIN_SONG_CLICKED, pinned => pinned),
+  onClickPinSong: createAction(Events.PIN_SONG_CLICKED),
 };
 
 export default {

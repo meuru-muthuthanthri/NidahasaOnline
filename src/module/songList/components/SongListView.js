@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
@@ -19,6 +20,9 @@ const useStyles = makeStyles(() => ({
     padding: '20px 30px',
     marginBottom: isMobile ? '2px' : '5px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    '&:active': {
+      background: '#FF8E53',
+    },
   },
   songTitle: {
     fontSize: isMobile ? 14 : 20,
@@ -37,27 +41,36 @@ export default function SongListView({ titles,
   onClickSong, onClickPin }) {
   const commonStyles = Styles();
   const classes = useStyles();
-  const onClickPinBtn = (event) => {
+
+  const onClickPinBtn = (event, songName, pinned) => {
     event.stopPropagation();
-    onClickPin();
-  }
+    onClickPin(songName, pinned);
+  };
+
+  const songRows = titles.map(({ title, pinned}, index) => {
+    return (
+      <Slide direction="left" in style={{ transitionDelay: `${index}0ms` }} key={title}>
+        <Paper
+          color="primary"
+          className={classes.songButtonRow}
+          onClick={() => onClickSong(title)}
+          key={title}
+        >
+          <label className={classes.songTitle}>{`${index + 1}. ${title}`}</label>
+          <IconButton
+            className={[commonStyles.iconButton, classes.pinIcon].join(' ')}
+            onClick={event => onClickPinBtn(event, title, !pinned)}
+          >
+            { pinned ? <DeleteSweepIcon/> : <PlaylistAddIcon/> }
+          </IconButton>
+        </Paper>
+      </Slide>
+    );
+  });
+
   return (
     <GridList className={classes.gridList} cellHeight={isMobile ? 20 : 40} cols={1}>
-      { titles.map((songName, index) => (
-        <Slide direction="left" in style={{ transitionDelay: `${index}0ms` }}>
-          <Paper
-            color="primary"
-            className={classes.songButtonRow}
-            onClick={() => onClickSong(songName)}
-            key={songName}
-          >
-            <label className={classes.songTitle}>{`${index + 1}. ${songName}`}</label>
-            <IconButton className={[commonStyles.iconButton, classes.pinIcon].join(' ')} aria-label="go back" onClick={onClickPinBtn}>
-              { index !== 5 ? <PlaylistAddIcon /> : <DeleteSweepIcon /> }
-            </IconButton>
-          </Paper>
-        </Slide>
-      ))}
+      {songRows}
     </GridList>
   );
 
