@@ -81,7 +81,7 @@ export default function CustomizedDialogs(args) {
 
   return (
     <div>
-      <Slide direction="down" in={selected}>
+      <Slide direction="down" in={!!selected}>
         <Button className={[classes.menuButton, classes.selectedChord]} onClick={handleClickOpen}>{selected}</Button>
       </Slide>
       <Dialog className={classes.dialog} onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
