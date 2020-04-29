@@ -11,31 +11,22 @@ import { isMobile } from 'react-device-detect';
 import Slide from '@material-ui/core/Slide';
 import SongView from './components/SongView';
 import ChordDialog from './components/ChordDialog';
+import Styles from '../CommonStyles';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
   offset: theme.mixins.toolbar,
-  menuButton: {
-    marginRight: theme.spacing(1),
-    backgroundColor: '#150940',
-    color: 'white',
-    padding: '2px',
-    textTransform: 'none',
-  },
   title: {
     flexGrow: 1,
-  },
-  iconButton: {
-    padding: '2px',
-    color: 'white',
   },
 }));
 
 export default ({ showChords, currentSong, title, chord, originalChord,
   onShowChordToggle, onGoHomePressed, onTranspose }) => {
   const classes = useStyles();
+  const commonStyles = Styles();
   return (
     <div>
       <AppBar position="fixed">
@@ -43,12 +34,12 @@ export default ({ showChords, currentSong, title, chord, originalChord,
           <ChordDialog original={originalChord} selected={chord} onSelect={onTranspose} />
           <Typography variant={isMobile ? 'subtitle1' : 'h4'} className={classes.title}>{title}</Typography>
           <Slide direction="left" in>
-            <IconButton className={classes.iconButton} aria-label="go back" onClick={onShowChordToggle}>
+            <IconButton className={commonStyles.iconButton} aria-label="go back" onClick={onShowChordToggle}>
               { !showChords ? <MusicNoteIcon /> : <MusicOffIcon /> }
             </IconButton>
           </Slide>
           <Slide direction="left" in style={{ transitionDelay: '100ms' }}>
-            <IconButton className={classes.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
+            <IconButton className={commonStyles.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
               <HomeIcon />
             </IconButton>
           </Slide>

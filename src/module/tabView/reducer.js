@@ -3,6 +3,7 @@ import { Events } from '../Actions';
 
 const initialState = Map({
   showNavBar: true,
+  currentView: 0,
 });
 
 const reducer = (state = initialState, { type, payload}) => {

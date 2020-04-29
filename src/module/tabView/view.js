@@ -14,13 +14,13 @@ const useStyles = makeStyles(() => ({
 
 export default function Layout(props) {
   const classes = useStyles();
-  const { children, showNavBar } = props;
+  const { children, showNavBar, currentView, onNavigate } = props;
   return (
     <div>
       <Paper square className={classes.paper}>
         {children}
       </Paper>
-      <Tabs showNavBar={showNavBar} />
+      <Tabs showNavBar={showNavBar} currentView={currentView} onNavigate={onNavigate} />
     </div>
   );
 }

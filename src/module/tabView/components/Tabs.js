@@ -5,8 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
-import PinDropOutlinedIcon from '@material-ui/icons/PinDropOutlined';
 import Slide from '@material-ui/core/Slide';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,21 +20,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ScrollableTabsButtonForce({ showNavBar }) {
+export default function ScrollableTabsButtonForce({ showNavBar, currentView, onNavigate }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    console.log("############", newValue);
-    setValue(newValue);
-  };
 
   return (
     <div className={classes.root}>
       <Slide direction="up" in={showNavBar} mountOnEnter unmountOnExit>
         <AppBar position="fixed" color="default" className={classes.appBar}>
           <Tabs
-            value={value}
-            onChange={handleChange}
+            value={currentView}
+            onChange={(event, newValue) => onNavigate(newValue)}
             indicatorColor="primary"
             textColor="primary"
             aria-label="scrollable force tabs example"
@@ -42,7 +37,7 @@ export default function ScrollableTabsButtonForce({ showNavBar }) {
           >
             <Tab icon={<FormatListNumberedIcon />} />
             <Tab icon={<CategoryOutlinedIcon />} />
-            <Tab icon={<PinDropOutlinedIcon />} />
+            <Tab icon={<PlaylistAddCheckIcon />} />
           </Tabs>
         </AppBar>
       </Slide>
