@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Actions } from '../Actions';
 import TabView from './view';
+import { HOME_SCREEN, PINNED_SONG } from '../Constants';
 
 const mapStateToProps = state => {
   const tabView = state.tabView;
@@ -11,8 +12,15 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => ({
   onNavigate: (view) => {
-    console.log("##############", view);
-    // dispatch(Actions.songPage.onShowChordToggle())
+    switch (view) {
+      case 2:
+        Actions.global.navigateTo(PINNED_SONG);
+        break;
+      case 0:
+      default:
+        Actions.global.navigateTo(HOME_SCREEN);
+    }
+    dispatch(Actions.tabView.onChangeTab(view))
   },
 });
 

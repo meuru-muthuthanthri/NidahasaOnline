@@ -17,6 +17,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import QueueRoundedIcon from '@material-ui/icons/QueueRounded';
 import { isMobile } from 'react-device-detect';
 
+import CommonStyles from '../../CommonStyles';
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -87,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar({ onSearch, onClickAddSong }) {
   const classes = useStyles();
+  const styles = CommonStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -169,7 +172,7 @@ export default function PrimarySearchAppBar({ onSearch, onClickAddSong }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={styles.appBar}>
         <Toolbar>
           <IconButton
             edge="start"

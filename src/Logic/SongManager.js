@@ -13,13 +13,14 @@ export const filterTitles = (titles, text = '') => {
   return titles.map((val, key) => val.set('filteredOut', !key.toLowerCase().includes(trimmedText.toLowerCase())));
 };
 
-export const getFilteredTitles = (titles) => {
-  return titles
-    .filter(val => !val.get('filteredOut'))
-    .map((val, key) => ({ title: key, pinned: !!val.get('pinned') }))
-    .toList()
-    .toArray();
-};
+const getTitles = (titles, filterFn) => titles
+  .filter(filterFn)
+  .map((val, title) => ({ title, pinned: !!val.get('pinned') }))
+  .toList()
+  .toArray();
+
+export const getFilteredTitles = (titles) => getTitles(titles, val => !val.get('filteredOut'));
+export const getPinnedTitles = (titles) => getTitles(titles, val => !!val.get('pinned'));
 
 export const processSongTitles = payload => fromJS(payload)
   .sortBy(val => val.get('title'));

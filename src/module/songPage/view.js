@@ -29,7 +29,7 @@ export default ({ showChords, currentSong, title, chord, originalChord,
   const commonStyles = Styles();
   return (
     <div>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={commonStyles.appBar}>
         <Toolbar>
           <ChordDialog original={originalChord} selected={chord} onSelect={onTranspose} />
           <Typography variant={isMobile ? 'subtitle1' : 'h4'} className={classes.title}>{title}</Typography>

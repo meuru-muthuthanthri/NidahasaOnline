@@ -16,6 +16,8 @@ const reducer = (state = initialState, { type, payload}) => {
     case Events.songList.RELOAD_SONG_TITLES: {
       return state.set('showNavBar', true);
     }
+    case Events.tabView.TAB_CHANGED:
+      return state.set('currentView', payload);
     default:
       return state;
   }
