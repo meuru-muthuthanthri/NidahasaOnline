@@ -9,7 +9,7 @@ export default function View(props) {
   const styles = CommonStyles();
   const { children, showNavBar, currentView, onNavigate } = props;
   return (
-    <SnackbarProvider maxSnack={3} dense>
+    <SnackbarProvider maxSnack={3} dense autoHideDuration={2000} classes={{ root: styles.notifications }}>
       <Paper square className={styles.mainContainer}>
         {children}
       </Paper>
