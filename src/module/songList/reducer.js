@@ -19,7 +19,8 @@ const reducer = (state = initialState, { type, payload}) => {
     case Events.songList.RELOAD_SONG_TITLES:
       return state.set('titles', filterTitles(state.get('titles')));
     case Events.songList.PIN_SONG_CLICKED: {
-      return state.setIn(['titles', payload.title, 'pinned'], payload.pinned);
+      const { title, pinned } = payload;
+      return state.setIn(['titles', title, 'pinned'], pinned);
     }
     default:
       return state;

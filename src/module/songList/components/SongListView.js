@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
@@ -35,8 +34,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function SongListView({ titles,
-  onClickSong, onClickPin }) {
+export default function SongListView({
+  titles,
+  onClickSong, onClickPin,
+}) {
   const commonStyles = Styles();
   const classes = useStyles();
 
@@ -45,31 +46,26 @@ export default function SongListView({ titles,
     onClickPin(songName, pinned);
   };
 
-  const songRows = titles.map(({ title, pinned}, index) => {
-    return (
-      <Slide direction="left" in style={{ transitionDelay: `${index}0ms` }} key={title}>
-        <Paper
-          color="primary"
-          className={classes.songButtonRow}
-          onClick={() => onClickSong(title)}
-          key={title}
-        >
-          <label className={classes.songTitle}>{`${index + 1}. ${title}`}</label>
-          <IconButton
-            className={[commonStyles.iconButton, classes.pinIcon].join(' ')}
-            onClick={event => onClickPinBtn(event, title, !pinned)}
-          >
-            { pinned ? <DeleteSweepIcon/> : <PlaylistAddIcon/> }
-          </IconButton>
-        </Paper>
-      </Slide>
-    );
-  });
+  const songRows = titles.map(({ title, pinned }, index) => (
+    <Paper
+      color="primary"
+      className={classes.songButtonRow}
+      onClick={() => onClickSong(title)}
+      key={title}
+    >
+      <label className={classes.songTitle}>{`${index + 1}. ${title}`}</label>
+      <IconButton
+        className={[commonStyles.iconButton, classes.pinIcon].join(' ')}
+        onClick={event => onClickPinBtn(event, title, !pinned)}
+      >
+        {pinned ? <DeleteSweepIcon /> : <PlaylistAddIcon />}
+      </IconButton>
+    </Paper>
+  ));
 
   return (
     <GridList className={classes.gridList} cellHeight={isMobile ? 20 : 40} cols={1}>
       {songRows}
     </GridList>
   );
-
 }

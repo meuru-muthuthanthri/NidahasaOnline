@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const background = 'linear-gradient(45deg, #6200EA 30%, #651FFF 90%)';
+const background = 'linear-gradient(45deg, #422574 30%, #3e1a99 90%)';
 const styles = makeStyles(() => ({
   iconButton: {
     padding: '2px',
@@ -8,6 +8,7 @@ const styles = makeStyles(() => ({
   },
   mainContainer: {
     paddingBottom: 48,
+    paddingLeft: 4,
     backgroundColor: 'black',
     color: 'white',
   },

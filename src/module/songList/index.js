@@ -5,10 +5,13 @@ import { SONG_EDITOR, SONG_PAGE } from '../Constants';
 import { readSong } from '../../repository/songRepo';
 import { getFilteredTitles } from '../../Logic/SongManager';
 
-const mapStateToProps = state => ({
-  titles: getFilteredTitles(state.songList.get('titles')),
-  isLoading: state.songList.get('titles').isEmpty(),
-});
+const mapStateToProps = state => {
+  const songList = state.songList;
+  return {
+    titles: getFilteredTitles(songList.get('titles')),
+    isLoading: songList.get('titles').isEmpty(),
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   onClickSong: (songName) => {
