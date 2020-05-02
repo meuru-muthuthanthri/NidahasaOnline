@@ -15,12 +15,16 @@ export const filterTitles = (titles, text = '') => {
 
 const getTitles = (titles, filterFn) => titles
   .filter(filterFn)
-  .map((val, title) => ({ title, pinned: !!val.get('pinned') }))
+  .map((val, title) => ({ title, pinned: !!val.get('pinned'), index: val.get('index') }))
   .toList()
   .toArray();
 
 export const getFilteredTitles = (titles) => getTitles(titles, val => !val.get('filteredOut'));
 export const getPinnedTitles = (titles) => getTitles(titles, val => !!val.get('pinned'));
 
-export const processSongTitles = payload => fromJS(payload)
-  .sortBy(val => val.get('title'));
+export const processSongTitles = payload => {
+  let index = 1;
+  return fromJS(payload)
+    .sortBy(val => val.get('title'))
+    .map(val => val.set('index', index++));
+};

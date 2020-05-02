@@ -5,8 +5,9 @@ import { useSnackbar } from 'notistack';
 import AppBar from './components/AppBar';
 import Splash from './components/Splash';
 import SongListView from './components/SongListView';
+import NoResults from '../pinnedSongs/components/NoResults';
 
-export default function ({ titles, isLoading,
+export default function ({ titles, isLoading, searchText,
   onClickSong, onSearch, onClickAddSong, onClickPinSong,
 }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -20,11 +21,14 @@ export default function ({ titles, isLoading,
 
   return (
     <div>
-      <AppBar onSearch={onSearch} onClickAddSong={onClickAddSong} />
+      <AppBar searchText={searchText} onSearch={onSearch} onClickAddSong={onClickAddSong} />
       <Toolbar />
       { isLoading
         ? <Splash />
-        : <SongListView titles={titles} onClickSong={onClickSong} onClickPin={onClickPin} /> }
+        : titles.length !== 0
+          ? <SongListView titles={titles} onClickSong={onClickSong} onClickPin={onClickPin} />
+          : <NoResults type="search" />
+      }
     </div>
   );
 }

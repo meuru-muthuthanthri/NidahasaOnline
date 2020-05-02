@@ -8,14 +8,17 @@ import GridList from '@material-ui/core/GridList';
 import { isMobile } from 'react-device-detect';
 
 import Styles from '../../CommonStyles';
+import { darkGrey } from '../../CommonStyles'
 
 const useStyles = makeStyles(() => ({
   songButtonRow: {
-    background: '#181D26',
+    background: darkGrey,
     borderRadius: 3,
     border: 0,
     color: 'white',
     padding: '20px 30px',
+    display: 'flex',
+    alignItems: 'center',
     marginBottom: isMobile ? '2px' : '5px',
     '&:active': {
       background: '#FF8E53',
@@ -26,7 +29,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: isMobile ? '10px' : '20px',
   },
   pinIcon: {
-    float: 'right',
+    marginLeft: 'auto',
   },
   gridList: {
     width: '100%',
@@ -46,14 +49,14 @@ export default function SongListView({
     onClickPin(songName, pinned);
   };
 
-  const songRows = titles.map(({ title, pinned }, index) => (
+  const songRows = titles.map(({ title, pinned, index }) => (
     <Paper
       color="primary"
       className={classes.songButtonRow}
       onClick={() => onClickSong(title)}
       key={title}
     >
-      <label className={classes.songTitle}>{`${index + 1}. ${title}`}</label>
+      <label className={classes.songTitle}>{`${index}. ${title}`}</label>
       <IconButton
         className={[commonStyles.iconButton, classes.pinIcon].join(' ')}
         onClick={event => onClickPinBtn(event, title, !pinned)}

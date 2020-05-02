@@ -1,20 +1,29 @@
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
+import { useSnackbar } from 'notistack';
 
 import AppBar from '../songList/components/AppBar';
-import Splash from '../songList/components/Splash';
+import NoResults from './components/NoResults';
 import SongListView from '../songList/components/SongListView';
 
-export default function ({ titles, isLoading,
-                           onClickSong, onSearch, onClickAddSong, onClickPinSong
-                         }) {
+export default function ({ titles,
+  onClickSong, onSearch, onClickAddSong, onClickPinSong,
+}) {
+  const { enqueueSnackbar } = useSnackbar();
+
+  const onClickPin = (songName, pinned) => {
+    const variant = pinned ? 'success' : 'warning';
+    const msg = `${songName} is ${!pinned ? 'un' : ''}pinned`;
+    enqueueSnackbar(msg, { variant });
+    onClickPinSong(songName, pinned);
+  };
   return (
     <div>
-      <AppBar onSearch={onSearch} onClickAddSong={onClickAddSong}/>
+      <AppBar onSearch={onSearch} onClickAddSong={onClickAddSong} />
       <Toolbar />
-      { isLoading
-        ? <Splash />
-        : <SongListView titles={titles} onClickSong={onClickSong} onClickPin={onClickPinSong} /> }
+      { titles.length === 0
+        ? <NoResults />
+        : <SongListView titles={titles} onClickSong={onClickSong} onClickPin={onClickPin} /> }
     </div>
   );
 }

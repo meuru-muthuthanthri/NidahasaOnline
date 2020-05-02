@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+export const darkGrey = '#181D26';
+
 const background = 'linear-gradient(45deg, #422574 30%, #3e1a99 90%)';
 const mainNavigationBarHeight = 48;
 const styles = makeStyles(() => ({

@@ -10,6 +10,7 @@ const mapStateToProps = state => {
   return {
     titles: getFilteredTitles(songList.get('titles')),
     isLoading: songList.get('titles').isEmpty(),
+    searchText: songList.get('searchText'),
   };
 };
 
