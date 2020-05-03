@@ -2,7 +2,7 @@ import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useSnackbar } from 'notistack';
 
-import AppBar from '../songList/components/AppBar';
+import AppBar from '../songList/components/SearchAppBar';
 import NoResults from './components/NoResults';
 import SongListView from '../songList/components/SongListView';
 

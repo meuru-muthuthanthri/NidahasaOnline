@@ -26,8 +26,8 @@ const styles = makeStyles(() => ({
     background,
   },
   notifications: {
-    top: 'auto',
-    bottom: mainNavigationBarHeight,
+    top: mainNavigationBarHeight,
+    bottom: 'auto',
   },
 }));
 
