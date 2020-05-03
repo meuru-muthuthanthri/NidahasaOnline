@@ -5,7 +5,7 @@ import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
-import { useSpring, animated } from 'react-spring'; // web.cjs is required for IE 11 support
+import { useSpring, animated } from 'react-spring';
 
 function MinusSquare(props) {
   return (
@@ -69,16 +69,20 @@ const StyledTreeItem = withStyles((theme) => ({
 
 const useStyles = makeStyles({
   root: {
-    height: 264,
-    flexGrow: 1,
-    maxWidth: 400,
+    padding: '1em',
   },
 });
 
-export default function CustomizedTreeView({ categories }) {
+export default function CustomizedTreeView({ categories, onClickSong }) {
   const classes = useStyles();
-  console.log("###########", categories);
-  const map = categories.map(cat => (<StyledTreeItem nodeId="7" label={cat.category}></StyledTreeItem>))
+  const map = categories.map((cat, key) => {
+    const leafNodes = cat.titles.map(
+      (title, titleKey) => (
+        <StyledTreeItem nodeId={`node_${key}_${titleKey}`} label={title} onClick={() => onClickSong(title)}/>
+      ),
+    );
+    return (<StyledTreeItem nodeId={`root${key}`} label={cat.category}>{leafNodes}</StyledTreeItem>);
+  });
   return (
     <TreeView
       className={classes.root}
@@ -88,20 +92,6 @@ export default function CustomizedTreeView({ categories }) {
       defaultEndIcon={<CloseSquare />}
     >
       {map}
-      <StyledTreeItem nodeId="1" label="Repentance - මනස්තාපනයේ ගී">
-        <StyledTreeItem nodeId="2" label="Hello" />
-        <StyledTreeItem nodeId="3" label="Subtree with children">
-          <StyledTreeItem nodeId="6" label="Hello" />
-          <StyledTreeItem nodeId="8" label="Hello" />
-        </StyledTreeItem>
-        <StyledTreeItem nodeId="4" label="World" />
-        <StyledTreeItem nodeId="5" label="Something something" />
-      </StyledTreeItem>
-      <StyledTreeItem nodeId="7" label="Sub-subtree with children">
-        <StyledTreeItem nodeId="9" label="Child 1" />
-        <StyledTreeItem nodeId="10" label="Child 2" />
-        <StyledTreeItem nodeId="11" label="Child 3" />
-      </StyledTreeItem>
     </TreeView>
   );
-};
+}

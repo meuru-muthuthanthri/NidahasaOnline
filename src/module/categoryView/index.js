@@ -3,10 +3,10 @@ import { Actions } from '../Actions';
 import View from './view';
 import { SONG_EDITOR, SONG_PAGE } from '../Constants';
 import { readSong } from '../../repository/songRepo';
-import { getPinnedTitles } from '../../Logic/SongManager';
+import { getPinnedTitles, buildCategories } from '../../Logic/SongManager';
 
 const mapStateToProps = state => {
-  const categories = [
+  const originalCategories = [
     { category: 'මනස්ථාපනයේ ගී', order: 1, id: 'rep' },
     { category: 'මෙනෙහි කිරීමේ ගී', order: 2, id: 'med' },
     { category: 'බලය අයැදීමේ ගී', order: 3, id: 'pow' },
@@ -22,9 +22,12 @@ const mapStateToProps = state => {
     { category: 'දෙව් මවුන්ට ගී', order: 13, id: 'mar' },
     { category: 'කැඳවීම පිළිබඳ ගී', order: 14, id: 'voc' },
     { category: 'Action Songs', order: 15, id: 'act' },
+    { category: 'Jesus Youth Hymns', order: 15, id: 'jys' },
   ];
+  const titles = state.songList.get('titles');
+  const categories = buildCategories(originalCategories, titles);
   return {
-    titles: getPinnedTitles(state.songList.get('titles')),
+    titles: getPinnedTitles(titles),
     categories,
   };
 };

@@ -14,8 +14,8 @@ const mapDispatchToProps = dispatch => ({
   onNavigate: (view) => {
     switch (view) {
       case 1:
-        // Actions.global.navigateTo(CATEGORIES);
-        // break;
+        Actions.global.navigateTo(CATEGORIES);
+        break;
       case 2:
         Actions.global.navigateTo(PINNED_SONG);
         break;

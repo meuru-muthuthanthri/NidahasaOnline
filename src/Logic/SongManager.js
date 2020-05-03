@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import _ from 'lodash';
 
 export const splitTitle = (str = '') => {
   const strList = str.split(/(\s+)/).filter(str => str.trim().length > 0 && str !== '-');
@@ -27,4 +28,14 @@ export const processSongTitles = payload => {
   return fromJS(payload)
     .sortBy(val => val.get('title'))
     .map(val => val.set('index', index++));
+};
+
+export const buildCategories = (categories, titles) => {
+  const updatedCategories = _.keyBy(categories.map(cat => ({ ...cat, titles: [] })), 'id');
+  titles.forEach((title, name) => {
+    title.get('categories').forEach(cat => {
+      updatedCategories[cat].titles.push(name);
+    });
+  });
+  return _.values(updatedCategories);
 };

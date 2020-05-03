@@ -3,10 +3,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { useSnackbar } from 'notistack';
 
 import AppBar from '../songList/components/SearchAppBar';
-import SongListView from '../songList/components/SongListView';
 import TreeView from './components/TreeView';
 
-export default function ({ titles, categories,
+export default function ({ categories,
   onClickSong, onSearch, onClickAddSong, onClickPinSong,
 }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -15,7 +14,7 @@ export default function ({ titles, categories,
     <div>
       <AppBar onSearch={onSearch} onClickAddSong={onClickAddSong} />
       <Toolbar />
-      <TreeView categories={categories} />
+      <TreeView categories={categories} onClickSong={onClickSong} />
     </div>
   );
 }
