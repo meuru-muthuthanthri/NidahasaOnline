@@ -4,7 +4,8 @@ import SongList from '../module/songList';
 import SongPage from '../module/songPage';
 import SongEditor from '../module/songEditor';
 import PinnedSongs from '../module/pinnedSongs';
-import { SONG_EDITOR, SONG_PAGE, HOME_SCREEN, PINNED_SONG } from '../module/Constants';
+import CategoryView from '../module/categoryView';
+import { SONG_EDITOR, SONG_PAGE, HOME_SCREEN, PINNED_SONG, CATEGORIES } from '../module/Constants';
 import Header from '../module/tabView';
 
 export default function Routes() {
@@ -15,6 +16,7 @@ export default function Routes() {
         <Route path={SONG_PAGE} component={SongPage} />
         <Route path={SONG_EDITOR} component={SongEditor} />
         <Route path={PINNED_SONG} component={PinnedSongs} />
+        <Route path={CATEGORIES} component={CategoryView} />
         <Route component={SongList} />
       </Switch>
     </Header>

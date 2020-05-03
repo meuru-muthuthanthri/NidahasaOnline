@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Actions } from '../Actions';
 import TabView from './view';
-import { HOME_SCREEN, PINNED_SONG } from '../Constants';
+import { CATEGORIES, HOME_SCREEN, PINNED_SONG } from '../Constants';
 
 const mapStateToProps = state => {
   const tabView = state.tabView;
@@ -13,6 +13,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   onNavigate: (view) => {
     switch (view) {
+      case 1:
+        // Actions.global.navigateTo(CATEGORIES);
+        // break;
       case 2:
         Actions.global.navigateTo(PINNED_SONG);
         break;

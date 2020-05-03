@@ -111,8 +111,8 @@ export default function SearchAppBar({ searchText, onSearch, onClickAddSong }) {
               ? <BackspaceRoundedIcon className={classes.clearSearch} onClick={() => onSearch('')} /> : null }
           </div>
           <div>
-            <IconButton className={classes.iconButton} onClick={onClickAddSong}>
-              <QueueRoundedIcon />
+            <IconButton className={classes.iconButton} onClick={onClickAddSong} disabled={true}>
+              <QueueRoundedIcon/>
             </IconButton>
           </div>
         </Toolbar>
