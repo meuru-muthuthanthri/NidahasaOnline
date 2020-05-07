@@ -81,7 +81,7 @@ export default function CustomizedTreeView({ categories, onClickSong }) {
         <StyledTreeItem nodeId={`node_${key}_${titleKey}`} label={title} onClick={() => onClickSong(title)}/>
       ),
     );
-    return (<StyledTreeItem nodeId={`root${key}`} label={cat.category}>{leafNodes}</StyledTreeItem>);
+    return (<StyledTreeItem nodeId={`root${key}`} label={cat.name}>{leafNodes}</StyledTreeItem>);
   });
   return (
     <TreeView
