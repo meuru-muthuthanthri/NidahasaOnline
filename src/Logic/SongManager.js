@@ -11,7 +11,11 @@ export const splitTitle = (str = '') => {
 
 export const filterTitles = (titles, text = '') => {
   const trimmedText = text.trim();
-  return titles.map((val, key) => val.set('filteredOut', !key.toLowerCase().includes(trimmedText.toLowerCase())));
+  return titles.map((val, key) => {
+    const arr = [].concat(key).concat(_.get(val.toJS(), 'ref', []));
+    const contains = _.some(arr, str => str.toLowerCase().includes(trimmedText.toLowerCase()));
+    return val.set('filteredOut', !contains);
+  });
 };
 
 const getTitles = (titles, filterFn) => titles
