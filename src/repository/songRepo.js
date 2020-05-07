@@ -8,7 +8,7 @@ export const saveSong = (db, title, song, tags, categories) => {
   const { title: id, chord, key } = splitTitle(title);
   return db.child(SONGS + id).set({ id, song, title })
     .then(() => db.child(`${SONG_LIST}/${id}`)
-      .set({ title, chord, key, categories, ref: tags}));
+      .set({ title, chord, key, categories, ref: tags, updatedTime: +new Date() }));
 };
 
 // write data example
