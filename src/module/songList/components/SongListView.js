@@ -4,6 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import GridList from '@material-ui/core/GridList';
 import { isMobile } from 'react-device-detect';
 
@@ -38,8 +40,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function SongListView({
-  titles,
-  onClickSong, onClickPin,
+  titles, onClickSong, onClickPin, onClickMoveUp, onClickMoveDown, totalHymns = 0
 }) {
   const commonStyles = Styles();
   const classes = useStyles();
@@ -49,6 +50,16 @@ export default function SongListView({
     onClickPin(songName, pinned);
   };
 
+  const onClickMoveUpBtn = (event, index) => {
+    event.stopPropagation();
+    onClickMoveUp(index);
+  };
+
+  const onClickMoveDownBtn = (event, index) => {
+    event.stopPropagation();
+    onClickMoveDown(index);
+  };
+
   const songRows = titles.map(({ title, pinned, index }) => (
     <Paper
       color="primary"
@@ -56,13 +67,35 @@ export default function SongListView({
       onClick={() => onClickSong(title)}
       key={title}
     >
+
       <label className={classes.songTitle}>{`${index}. ${title}`}</label>
-      <IconButton
-        className={[commonStyles.iconButton, classes.pinIcon].join(' ')}
-        onClick={event => onClickPinBtn(event, title, !pinned)}
-      >
-        {pinned ? <DeleteSweepIcon /> : <PlaylistAddIcon />}
-      </IconButton>
+
+      <div className={classes.pinIcon}>
+        {index !== 1 &&
+        <IconButton
+            className={[commonStyles.iconButton].join(' ')}
+            onClick={event => onClickMoveUpBtn(event, index)}
+        >
+          <ArrowUpwardIcon/>
+        </IconButton>
+        }
+
+        {index !== totalHymns &&
+        <IconButton
+            className={[commonStyles.iconButton].join(' ')}
+            onClick={event => onClickMoveDownBtn(event, index)}
+        >
+          <ArrowDownwardIcon/>
+        </IconButton>
+        }
+
+        <IconButton
+            className={[commonStyles.iconButton, classes.pinIcon].join(' ')}
+            onClick={event => onClickPinBtn(event, title, !pinned)}
+        >
+          {pinned ? <DeleteSweepIcon /> : <PlaylistAddIcon />}
+        </IconButton>
+      </div>
     </Paper>
   ));
 

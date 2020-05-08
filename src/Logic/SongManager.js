@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import {fromJS, OrderedMap} from 'immutable';
 import _ from 'lodash';
 
 export const splitTitle = (str = '') => {
@@ -12,6 +12,30 @@ export const splitTitle = (str = '') => {
 export const filterTitles = (titles, text = '') => {
   const trimmedText = text.trim();
   return titles.map((val, key) => val.set('filteredOut', !key.toLowerCase().includes(trimmedText.toLowerCase())));
+};
+
+export const moveTitleUp = (titles, index = 0) => {
+  return moveItem(titles, index - 1, index - 2)
+};
+
+export const moveTitleDown = (titles, index = 0) => {
+  return moveItem(titles, index - 1, index)
+};
+
+function moveItem(titles, old_index, new_index) {
+  let arr = titles.toArray();
+
+  if (new_index < 0) {
+    return titles
+  } else {
+    let movedElem = arr[old_index];
+    arr[old_index] = arr[new_index];
+    arr[new_index] = movedElem;
+
+    let index = 1;
+    return new OrderedMap(arr)
+        .map(val => val.set('index', index++));
+  }
 };
 
 const getTitles = (titles, filterFn) => titles

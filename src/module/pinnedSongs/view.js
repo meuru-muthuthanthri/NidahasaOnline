@@ -7,7 +7,7 @@ import NoResults from './components/NoResults';
 import SongListView from '../songList/components/SongListView';
 
 export default function ({ titles,
-  onClickSong, onSearch, onClickAddSong, onClickPinSong,
+  onClickSong, onSearch, onClickAddSong, onClickPinSong, onClickMoveUp, onClickMoveDown
 }) {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -23,7 +23,7 @@ export default function ({ titles,
       <Toolbar />
       { titles.length === 0
         ? <NoResults />
-        : <SongListView titles={titles} onClickSong={onClickSong} onClickPin={onClickPin} /> }
+        : <SongListView titles={titles} onClickSong={onClickSong} onClickPin={onClickPin} onClickMoveUp={onClickMoveUp} onClickMoveDown={onClickMoveDown} totalHymns={titles.length}/> }
     </div>
   );
 }

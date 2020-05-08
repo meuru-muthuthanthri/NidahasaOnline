@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import { Events } from '../Actions';
-import { filterTitles, processSongTitles } from '../../Logic/SongManager';
+import {filterTitles, moveTitleDown, moveTitleUp, processSongTitles} from '../../Logic/SongManager';
 
 const initialState = Map({
   titles: Map(),
@@ -21,6 +21,14 @@ const reducer = (state = initialState, { type, payload}) => {
     case Events.songList.PIN_SONG_CLICKED: {
       const { title, pinned } = payload;
       return state.setIn(['titles', title, 'pinned'], pinned);
+    }
+    case Events.songList.MOVE_SONG_UP: {
+      const { index } = payload;
+      return state.set('titles', moveTitleUp(state.get('titles'), index));
+    }
+    case Events.songList.MOVE_SONG_DOWN: {
+      const { index } = payload;
+      return state.set('titles', moveTitleDown(state.get('titles'), index));
     }
     default:
       return state;

@@ -26,6 +26,8 @@ const mapDispatchToProps = dispatch => ({
     Actions.global.navigateTo(SONG_EDITOR);
   },
   onClickPinSong: (title, pinned) => dispatch(Actions.songList.onClickPinSong({ title, pinned })),
+  onClickMoveUp: (index) => dispatch(Actions.songList.onClickMoveUp({ index })),
+  onClickMoveDown: (index) => dispatch(Actions.songList.onClickMoveDown({ index })),
 });
 
 const component = connect(mapStateToProps, mapDispatchToProps)(View);
