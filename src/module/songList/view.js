@@ -8,7 +8,7 @@ import SongListView from './components/SongListView';
 import NoResults from '../pinnedSongs/components/NoResults';
 
 export default function ({ titles, isLoading, searchText,
-  onClickSong, onSearch, onClickAddSong, onClickPinSong,
+  onClickSong, onSearch, onClickAddSong, onClickPinSong, onClickMoveUp, onClickMoveDown
 }) {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -26,7 +26,13 @@ export default function ({ titles, isLoading, searchText,
       { isLoading
         ? <Splash />
         : titles.length !== 0
-          ? <SongListView titles={titles} onClickSong={onClickSong} onClickPin={onClickPin} />
+          ? <SongListView
+                  titles={titles}
+                  onClickSong={onClickSong}
+                  onClickPin={onClickPin}
+                  onClickMoveUp={onClickMoveUp}
+                  onClickMoveDown={onClickMoveDown}
+                  totalHymns={titles.length}/>
           : <NoResults type="search" />
       }
     </div>
