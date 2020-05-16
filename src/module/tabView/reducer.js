@@ -12,7 +12,6 @@ const reducer = (state = initialState, { type, payload}) => {
     case Events.songList.NAVIGATED_TO_SONG: {
       return state.set('showNavBar', false);
     }
-    case Events.songList.NAVIGATE:
     case Events.songList.RELOAD_SONG_TITLES: {
       return state.set('showNavBar', true);
     }

@@ -53,29 +53,27 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default ({ song, title, categories,
-  onLyricsEdit, onTitleEdit, onGoHomePressed, onSaveSong }) => {
+export default ({ song, title, categories, tags, selectedCategories,
+  onLyricsEdit, onTitleEdit, onGoHomePressed, onSaveSong, onModifyTags, setSelectedCategories,
+}) => {
   const classes = useStyles();
   const styles = CommonStyles();
   const { title: header, chord, key } = splitTitle(title || '');
-  const [selectedCategories, setSelectedCategories] = React.useState([]);
-  const onSelectCat = (items) => {
-    setSelectedCategories(items);
-  };
 
-  const [tags, setTags] = React.useState([]);
   const onEditTags = ({ target: { value } }) => {
-    setTags(value.split(',').map(tag => tag.trim()).filter(tag => tag !== ''));
+    onModifyTags(value.split(',').map(tag => tag.trim()).filter(tag => tag !== ''));
   };
   const chips = tags.map(tag => (
     <Chip icon={<SearchIcon />} label={tag} size="small" disabled className={classes.chip} />
   ));
+  const searchTags = tags.join(', ');
 
   return (
     <div>
       <AppBar position="fixed">
         <Toolbar>
           <TextField id="standard-basic" label="Song Title" className={classes.title}
+                     value={title}
                      placeholder="Title <SPACE> Chord <SPACE> Beat"
                      onChange={({ target }) => onTitleEdit(target.value)}/>
           <IconButton className={styles.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
@@ -85,8 +83,8 @@ export default ({ song, title, categories,
       </AppBar>
       <div className={classes.offset} />
       <div className={classes.body}>
-        <MultiSelectDropDown text="Select song categories" items={categories} onSelect={onSelectCat} />
-        <Input placeholder="Enter comma separated search tags" fullWidth onChange={onEditTags} />
+        <MultiSelectDropDown text="Select song categories" items={categories} onSelect={setSelectedCategories} selected={selectedCategories} />
+        <Input placeholder="Enter comma separated search tags" fullWidth onChange={onEditTags} defaultValue={searchTags}/>
         <div>
           {chips}
         </div>
@@ -98,6 +96,7 @@ export default ({ song, title, categories,
           onChange={({ target }) => onLyricsEdit(target.value)}
           helperText="Enter the full song with Chords, without the title"
           multiline
+          value={song}
           InputLabelProps={{
             shrink: true,
           }}

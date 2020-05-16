@@ -16,11 +16,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function MultiSelectDropDown({ text, items, onSelect }) {
+export default function MultiSelectDropDown({ text, items, selected: initialState, onSelect }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [state, setState] = React.useState([]);
+  const [state, setState] = React.useState(initialState);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

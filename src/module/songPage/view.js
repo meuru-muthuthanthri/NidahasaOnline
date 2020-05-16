@@ -11,6 +11,8 @@ import { isMobile } from 'react-device-detect';
 import Slide from '@material-ui/core/Slide';
 import SongView from './components/SongView';
 import ChordDialog from './components/ChordDialog';
+import EditIcon from '@material-ui/icons/Edit';
+
 import Styles from '../CommonStyles';
 
 const useStyles = makeStyles(theme => ({
@@ -23,8 +25,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default ({ showChords, currentSong, title, chord, originalChord,
-  onShowChordToggle, onGoHomePressed, onTranspose }) => {
+export default ({ showChords, currentSong, title, chord, originalChord, songInfo,
+  onShowChordToggle, onGoHomePressed, onTranspose, onEdit }) => {
   const classes = useStyles();
   const commonStyles = Styles();
   return (
@@ -34,11 +36,16 @@ export default ({ showChords, currentSong, title, chord, originalChord,
           <ChordDialog original={originalChord} selected={chord} onSelect={onTranspose} />
           <Typography variant={isMobile ? 'subtitle1' : 'h4'} className={classes.title}>{title}</Typography>
           <Slide direction="left" in>
+            <IconButton className={commonStyles.iconButton} aria-label="go back" onClick={() => onEdit({ songInfo, currentSong })}>
+              <EditIcon />
+            </IconButton>
+          </Slide>
+          <Slide direction="left" in style={{ transitionDelay: '100ms' }}>
             <IconButton className={commonStyles.iconButton} aria-label="go back" onClick={onShowChordToggle}>
               { !showChords ? <MusicNoteIcon /> : <MusicOffIcon /> }
             </IconButton>
           </Slide>
-          <Slide direction="left" in style={{ transitionDelay: '100ms' }}>
+          <Slide direction="left" in style={{ transitionDelay: '200ms' }}>
             <IconButton className={commonStyles.iconButton} color="secondary" aria-label="go back" onClick={onGoHomePressed}>
               <HomeIcon />
             </IconButton>
