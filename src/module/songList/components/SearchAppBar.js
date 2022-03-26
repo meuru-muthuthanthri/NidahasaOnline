@@ -103,7 +103,7 @@ export default function SearchAppBar({ searchText, onSearch, onClickAddSong }) {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              value={searchText}
+              value={searchText || ''}
               inputProps={{ 'aria-label': 'search' }}
               onChange={({ target }) => onSearch(target.value)}
             />

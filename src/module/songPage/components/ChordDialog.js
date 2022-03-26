@@ -8,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Slide from '@material-ui/core/Slide';
-import Toolbar from '@material-ui/core/Toolbar';
 
 const styles = (theme) => ({
   root: {
@@ -51,7 +50,7 @@ const DialogTitle = withStyles(styles)((props) => {
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon/>
+          <CloseIcon />
         </IconButton>
       ) : null}
     </MuiDialogTitle>
@@ -82,7 +81,12 @@ export default function CustomizedDialogs(args) {
   return (
     <div>
       <Slide direction="down" in={!!selected}>
-        <Button className={[classes.menuButton, classes.selectedChord]} onClick={handleClickOpen}>{selected}</Button>
+        <Button
+          className={[classes.menuButton, classes.selectedChord]}
+          onClick={handleClickOpen}
+        >
+          {selected}
+        </Button>
       </Slide>
       <Dialog className={classes.dialog} onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>

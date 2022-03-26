@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   title: state.songEditor.get('title'),
   categories: state.categoryView.get('categories'),
   selectedCategories: state.songEditor.get('categories').toArray(),
-  tags: state.songEditor.get('searchTags').toArray(),
+  tags: state.songEditor.get('searchTags'),
 });
 
 const mapDispatchToProps = dispatch => ({

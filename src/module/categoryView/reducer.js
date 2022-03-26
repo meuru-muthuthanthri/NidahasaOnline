@@ -1,5 +1,4 @@
 import { Map } from 'immutable';
-import { Events } from '../Actions';
 
 const originalCategories = [
   { name: 'මනස්ථාපනයේ ගී', order: 1, id: 'rep' },
