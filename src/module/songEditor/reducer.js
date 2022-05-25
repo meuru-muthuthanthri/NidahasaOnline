@@ -17,7 +17,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case Events.songEditor.ON_TITLE_EDIT:
       return state.set('title', payload !== '' ? payload : null);
     case Events.songEditor.TAGS_MODIFIED:
-      return state.set('searchTags', payload);
+      return state.set('searchTags', List(payload));
     case Events.songEditor.SET_SELECTED_CATEGORIES:
       return state.set('categories', List(payload));
     case Events.songEditor.SONG_EDIT: {
