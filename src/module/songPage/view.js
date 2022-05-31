@@ -54,8 +54,8 @@ export default ({ showChords, currentSong, title, chord, originalChord, songInfo
       </AppBar>
       <div className={classes.offset} />
       <SongView
-        lyricsSize={isMobile ? '12px' : '20px'}
-        chordSize={isMobile ? '12px' : '20px'}
+        lyricsSize={isMobile ? '16px' : '20px'}
+        chordSize={isMobile ? '16px' : '20px'}
         chord={chord}
         originalChord={originalChord}
         currentSong={currentSong}
